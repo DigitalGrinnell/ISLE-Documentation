@@ -1,8 +1,7 @@
-# DG Migration History
-
 ---
 Note:  The canonical copy of this text can be found at [https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md).
 ---
+# DG Migration History
 
 Migration commenced on 27-Nov-2018 by MAM on CentOS 7 host `DGDocker2.Grinnell.edu` (132.161.132.143).  Initial setup followed [install_on_centos.md](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/docs/01_installation_host_server/install_on_centos.md) with creation and config of user and group `islandora` on the host.  SSH access was configured for Mark's GC MacBook, `ma7053`.
 
