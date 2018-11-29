@@ -214,7 +214,10 @@ Next, I re-visited my site as the super-user, and...
     - Checked the `Provide a menu link` box, and
     - Clicked `Save`
     
-## Adding Another Module, 'Github Flavored Markdown'
+## Applying the Custom 'Digital Grinnell' Theme
 
-So, I wasn't really happy with the appearance of this text in my site and went looking for a different `Markdown` text filter... and I found `Github Flavored Markdown`, an add-on to the `Markdown` module.  I won't go into all the details, but I followed the instructions posted with the module at https://www.drupal.org/project/gfm, and used `drush` as I'd done previously to install and enable the module.  I repeated my text format configuration steps and--drum roll please--this post now looks much better than it did before.
+So, the current theme used by Digital.Grinnell lives in https://github.com/DigitalGrinnell/Digital_Grinnell_Theme. It's NOT a Drupal.org theme, so I don't believe it can be downloaded and enabled using `drush`.  However, I have had some ISLE success in the past with installation of bits like this theme using `composer`.
+
+
+
 
