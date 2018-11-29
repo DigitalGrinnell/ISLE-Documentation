@@ -188,13 +188,13 @@ First step was to login to the new site as the super-user, in my case that usern
     
 Having completed these steps I can now successfully login to my site as the super-user, `digital`.
 
-## Add a Drupal Module to the Site
+In this section I confirmed two critical things:
 
-In the previous section I confirmed two critical things:
-
-    1. I can successfully log in to Portainer and open a console/terminal inside the Apache container.
+    1. I can successfully login to Portainer and open a console/terminal inside the Apache container.
     2. drush is working nicely inside the Apache container.
-    
+
+## Adding a Drupal Module to the Site
+
 So, to add the `Markdown` module to my site I repeated the Portainer steps from the previous section, then inside the `isle-apache-dg` container console/terminal...
 
     - cd /var/www/html
@@ -202,13 +202,19 @@ So, to add the `Markdown` module to my site I repeated the Portainer steps from 
     - drush en markdown
     - drush cc all
 
-## Add This Document as a Basic Page
+## Adding This Document as a Basic Page
 
 Next, I re-visited my site as the super-user, and...
 
+    - Navigated to https://dgdocker1.grinnell.edu/#overlay=admin/config/content/formats/add in order to add a new text format I've named `Markdown`,
+    - Check the box reqiured to enable the `Markdown` filter and clicked `Save configuration`,
     - Navigated to https://dgdocker1.grinnell.edu/#overlay=node/add,  
     - Selected the `Basic page` link, and in the subsequent form I entered the title and body of this document,
     - Selected `Markdown` from the `Text format` selector,
     - Checked the `Provide a menu link` box, and
     - Clicked `Save`
     
+## Adding Another Module, 'Github Flavored Markdown'
+
+So, I wasn't really happy with the appearance of this text in my site and went looking for a different `Markdown` text filter... and I found `Github Flavored Markdown`, an add-on to the `Markdown` module.  I won't go into all the details, but I followed the instructions posted with the module at https://www.drupal.org/project/gfm, and used `drush` as I'd done previously to install and enable the module.  I repeated my text format configuration steps and--drum roll please--this post now looks much better than it did before.
+
