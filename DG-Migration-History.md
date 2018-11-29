@@ -1,4 +1,4 @@
-# Digital Grinnell Upgrade + Migration History
+# DG Migration History
 
 ---
 Note:  The canonical copy of this text can be found at [https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md).
