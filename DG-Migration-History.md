@@ -216,7 +216,23 @@ Next, I re-visited my site as the super-user, and...
     
 ## Applying the Custom 'Digital Grinnell' Theme
 
-So, the current theme used by Digital.Grinnell lives in https://github.com/DigitalGrinnell/Digital_Grinnell_Theme. It's NOT a Drupal.org theme, so I don't believe it can be downloaded and enabled using `drush`.  However, I have had some ISLE success in the past with installation of bits like this theme using `composer`.
+So, the current theme used by Digital Grinnell lives in https://github.com/DigitalGrinnell/digital_grinnell_theme. It's NOT a Drupal.org theme, so I don't believe it can be downloaded and enabled using `drush`.  However, I have had some non-ISLE success in the past with installation of bits like this theme using `composer`, and that process is now nicely documented in [Installing a Module with Composer](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/docs/07_appendices/installing-module-with-composer.md).
+
+It should be noted that in order for the documented process to work the module to be installed, or theme in my case, must have a proper `composer.json` file.  To create such a file for your own theme I'd advise looking at the copy in [https://github.com/DigitalGrinnell/digital_grinnell_theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) for guidance.
+
+Following the instructions--modified for a theme instead of a module--in the aforementioned document...
+
+```
+ cd /var/www/html/sites/all/themes
+ git clone https://github.com/DigitalGrinnell/digital_grinnell_theme.git
+ cd digital_grinnell_theme/
+ composer install
+```
+I navigated my browser to [https://dgdocker1.grinnell.edu/#overlay=admin/appearance](https://dgdocker1.grinnell.edu/#overlay=admin/appearance), and selected the `Digital Grinnell` theme to be enabled AND set as the default.  It worked!
+
+---
+I will note here that the current theme is identified in [this file](https://github.com/DigitalGrinnell/digital_grinnell_theme/blob/master/Digital_Grinnell.info) as `version = 1.1`, and with a `screenshot.png` that is years out-of-date.  I'll take steps to revise the version, perhaps to 7.0, and update the screenshot soon.  Once that is done all the should be required to update the theme here will be a simple `composer update` command.
+---
 
 
 
