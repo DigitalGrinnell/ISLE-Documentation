@@ -1,7 +1,7 @@
 # Digital Grinnell Upgrade + Migration History
 
 ---
-Note:  The canonical copy of this text can be found at [https://github.com/DigitalGrinnell/ISLE-Documentation](https://github.com/DigitalGrinnell/ISLE-Documentation).
+Note:  The canonical copy of this text can be found at [https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/DG-Migration-History.md).
 ---
 
 Migration commenced on 27-Nov-2018 by MAM on CentOS 7 host `DGDocker2.Grinnell.edu` (132.161.132.143).  Initial setup followed [install_on_centos.md](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/docs/01_installation_host_server/install_on_centos.md) with creation and config of user and group `islandora` on the host.  SSH access was configured for Mark's GC MacBook, `ma7053`.
@@ -172,5 +172,44 @@ See `docker-compose.yml` for complete details.  *Note*: In both the Traefik and 
 
 Now, both *Traefik* and *Portainer* dashboards are password protected.  Yay!
 
-## Next - Login to Add a Module and This Page
+## Next - Login to the Site As the Super-User
 
+So, I wanted to add a copy of this document, the text you are reading now, to the new web site as a Drupal page displayed in Markdown, because that what this document is written in.  Obviously it worked because you're reading that page now, I presume.  
+
+First step was to login to the new site as the super-user, in my case that username is `digital`, so that I could subsequently add this text as a `Basic Page`.  I tried using the credentials defined in my `.env` file, but I was not allowed to login.  I'm still not sure what went wrong, but I executed the following steps to quickly work around it...
+
+    - Open Portainer in my brower by visiting https://portainer1.grinnell.edu, and login there.
+    - In the Portainer dashboard open a terminal into the `isle-apache-dg` container using its `>_` console link.
+    - Inside the console/terminal...
+        - cd /var/www/html
+        - drush uli digital
+        - Copy the generated URL for use in my browser.
+    - Back in my browser... paste the generated URL into the address bar and modify it replacing `http://default/` with 'http://dgdocker1.grinnell.edu/'
+    - In the 'temporary' page, enter a new password for the super-user, `digital`.
+    
+Having completed these steps I can now successfully login to my site as the super-user, `digital`.
+
+## Add a Drupal Module to the Site
+
+In the previous section I confirmed two critical things:
+
+    1. I can successfully log in to Portainer and open a console/terminal inside the Apache container.
+    2. drush is working nicely inside the Apache container.
+    
+So, to add the `Markdown` module to my site I repeated the Portainer steps from the previous section, then inside the `isle-apache-dg` container console/terminal...
+
+    - cd /var/www/html
+    - drush dl markdown
+    - drush en markdown
+    - drush cc all
+
+## Add This Document as a Basic Page
+
+Next, I re-visited my site as the super-user, and...
+
+    - Navigated to https://dgdocker1.grinnell.edu/#overlay=node/add,  
+    - Selected the `Basic page` link, and in the subsequent form I entered the title and body of this document,
+    - Selected `Markdown` from the `Text format` selector,
+    - Checked the `Provide a menu link` box, and
+    - Clicked `Save`
+    
