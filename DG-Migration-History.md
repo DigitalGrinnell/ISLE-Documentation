@@ -230,9 +230,7 @@ Following the instructions--modified for a theme instead of a module--in the afo
 ```
 I navigated my browser to [https://dgdocker1.grinnell.edu/#overlay=admin/appearance](https://dgdocker1.grinnell.edu/#overlay=admin/appearance), and selected the `Digital Grinnell` theme to be enabled AND set as the default.  It worked!
 
----
-I will note here that the current theme is identified in [this file](https://github.com/DigitalGrinnell/digital_grinnell_theme/blob/master/Digital_Grinnell.info) as `version = 1.1`, and with a `screenshot.png` that is years out-of-date.  I'll take steps to revise the version, perhaps to 7.0, and update the screenshot soon.  Once that is done all the should be required to update the theme here will be a simple `composer update` command.
----
+
 
 
 
