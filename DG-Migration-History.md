@@ -185,7 +185,7 @@ First step was to login to the new site as the super-user, in my case that usern
         - Copy the generated URL for use in my browser.
     - Back in my browser... paste the generated URL into the address bar and modify it replacing `http://default/` with 'http://dgdocker1.grinnell.edu/'
     - In the 'temporary' page, enter a new password for the super-user, `digital`.
-    
+
 Having completed these steps I can now successfully login to my site as the super-user, `digital`.
 
 In this section I confirmed two critical things:
@@ -213,7 +213,7 @@ Next, I re-visited my site as the super-user, and...
     - Selected `Markdown` from the `Text format` selector,
     - Checked the `Provide a menu link` box, and
     - Clicked `Save`
-    
+
 ## Applying the Custom 'Digital Grinnell' Theme
 
 So, the current theme used by Digital Grinnell lives in https://github.com/DigitalGrinnell/digital_grinnell_theme. It's NOT a Drupal.org theme, so I don't believe it can be downloaded and enabled using `drush`.  However, I have had some non-ISLE success in the past with installation of bits like this theme using `composer`, and that process is now nicely documented in [Installing a Module with Composer](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/docs/07_appendices/installing-module-with-composer.md).
@@ -230,8 +230,25 @@ Following the instructions--modified for a theme instead of a module--in the afo
 ```
 I navigated my browser to [https://dgdocker1.grinnell.edu/#overlay=admin/appearance](https://dgdocker1.grinnell.edu/#overlay=admin/appearance), and selected the `Digital Grinnell` theme to be enabled AND set as the default.  It worked!
 
+## Loading the Custom DG7 Module
 
+Nearly all of the functional customization in Digital Grinnell is held in the custom [DG7 Module](https://github.com/DigitalGrinnell/dg7.git).  Like the custom theme above, this is a custom module and NOT a Drupal.org module so I've added a `composer.json` file to the project repository and will attempt to download and install it similar to what I did with the theme above:
 
+```
+ cd /var/www/html/sites/all/modules
+ git clone https://github.com/DigitalGrinnell/dg7.git
+ cd dg7/
+ composer install
+ cd /var/www/html/sites/default
+ drush en dg7
+ drush cc all
+```
+After the command sequence above, I visited my site and navigated to `#overlay=admin/modules` where I was able to confirm that the `DG7` module is loaded and enabled.  I also visited `#overlay=admin/structure/views` to see if the Drupal views defined in `DG7` were active, but they were NOT.  So I visited `#overlay=admin/reports/dblog` and found log messages like the following:
 
+    dg7_views_default_views has been called but not in MAINTENANCE MODE, or dg7_collection already exists, so the view will NOT be updated.
 
+So I put the site into maintenance mode from `#overlay=admin/config/development/maintenance` then revisited `#overlay=admin/modules` where I disabled the `DG7` module, then re-enabled it.
 
+Unfortunately, NONE of this worked, presumably because the site is not yet linked to my Fedora repository so there are NO collections to display.
+
+## Connecting the Site to Fedora and Solr

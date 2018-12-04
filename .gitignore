@@ -65,3 +65,4 @@ site
 new_structure.md
 passwords.md
 .vagrant
+.env
