@@ -190,12 +190,12 @@ Having completed these steps I can now successfully login to my site as the supe
 
 In this section I confirmed two critical things:
 
-    1. I can successfully login to Portainer and open a console/terminal inside the Apache container.
+    1. I can successfully login to *Portainer* and open a console/terminal inside the Apache container.
     2. drush is working nicely inside the Apache container.
 
 ## Adding a Drupal Module to the Site
 
-So, to add the `Markdown` module to my site I repeated the Portainer steps from the previous section, then inside the `isle-apache-dg` container console/terminal...
+So, to add the `Markdown` module to my site I repeated the *Portainer* steps from the previous section, then inside the `isle-apache-dg` container console/terminal...
 
     - cd /var/www/html
     - drush dl markdown
@@ -355,3 +355,14 @@ The warning I can easily take care of.  The `dg7` module that I loaded earlier h
 I made the necessary changes in a new copy of `dg7` from https://github.com/GrinnellCollege-Private/dg7.git, moved the existing module out of the way in the *Apache* server at `/var/www/html/sites/all/modules/dg7`, and cloned the new module into its place.  I did `composer update` followed by `drush cc all` and now when I visit https://dgdocker1.grinnell.edu/islandora/object/islandora:root the missing `icu` warning is gone.  
 
 The offset notice remains so I forked https://DigitalGrinnell/digital_grinnell_theme to https://GrinnellCollege-Private/digital_grinnell_theme and committed a change to eliminate the notice.  Then, just as with `dg7` I replaced the code in *Apache*'s `/var/www/html/themes/digital_grinnell_theme` directory and repeated steps from above.  Now, when I visit https://dgdocker1.grinnell.edu/islandora/object/islandora:root the notice is gone too!
+
+## More Modules to Be Enabled
+We've come a long way, but... from a shell/terminal running at `digital7.grinnell.edu`, and another running inside my *Apache* container, I've been doing this:
+
+```
+cd /var/www/<path to site>/site/default
+drush pm-list --fields=Name,Version,Status --format=csv --no-core > modules.list.csv
+```
+This `drush` command output, piped to a .csv file, gives me two lists of ALL the non-core modules and themes available in each environment, along with their version and status ('Enabled', 'Not Installed', etc.).  I pulled these two lists together in an Excel spreadsheet and did a little 'VLOOKUP' magic to get an idea of what's in DG that's not yet enabled in ISLE.  *I found 30 "necessary" modules in DG that are not yet in ISLE, and another 30 that I can perhaps live without, at least for now.*
+
+I could install and enable all of these using the `drush` and/or `composer` methods employed above, but I'm going to investigate https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools first to see if that might be a better solution.  So, I've forked that project to https://github.com/DigitalGrinnell/ISLE-Drupal-Build-Tools and will take up the fight there.  Note that I've also created a *private* copy, not a fork, of the canonical *ISLE* repo at https://github.com/GrinnellCollege-Private/ISLE. 

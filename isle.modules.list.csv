@@ -1,0 +1,232 @@
+Actions permissions (VBO) (actions_permissions),7.x-3.5,Not installed
+Administration Development tools (admin_devel),7.x-3.0-rc5,Not installed
+Administration menu (admin_menu),7.x-3.0-rc5,Not installed
+Administration menu Toolbar style (admin_menu_toolbar),7.x-3.0-rc5,Not installed
+Bulk Export (bulk_export),7.x-1.14,Not installed
+Chaos tools (ctools),7.x-1.14,Enabled
+Chaos Tools (CTools) AJAX Example (ctools_ajax_sample),7.x-1.14,Not installed
+Chaos Tools (CTools) Plugin Example (ctools_plugin_example),7.x-1.14,Not installed
+Custom content panes (ctools_custom_content),7.x-1.14,Not installed
+Custom rulesets (ctools_access_ruleset),7.x-1.14,Not installed
+Page manager (page_manager),7.x-1.14,Not installed
+Stylizer (stylizer),7.x-1.14,Not installed
+Term Depth access (term_depth),7.x-1.14,Not installed
+Views content panes (views_content),7.x-1.14,Not installed
+Date (date),7.x-2.10,Not installed
+Date All Day (date_all_day),7.x-2.10,Not installed
+Date API (date_api),7.x-2.10,Enabled
+Date Context (date_context),7.x-2.10,Not installed
+Date Picker (datepicker),7.x-1.0,Enabled
+Date Picker Block (datepicker_block),7.x-1.0,Not installed
+Date Picker Views (datepicker_views),7.x-1.0,Enabled
+Date Popup (date_popup),7.x-2.10,Enabled
+Date Repeat API (date_repeat),7.x-2.10,Not installed
+Date Repeat Field (date_repeat_field),7.x-2.10,Not installed
+Date Tools (date_tools),7.x-2.10,Not installed
+Date Views (date_views),7.x-2.10,Enabled
+Devel (devel),7.x-1.6,Not installed
+Devel generate (devel_generate),7.x-1.6,Not installed
+Devel node access (devel_node_access),7.x-1.6,Not installed
+Nodequeue generate (nodequeue_generate),7.x-2.1,Not installed
+Digital Grinnell v7 Code (dg7),Enabled
+Date Migration Example (date_migrate_example),7.x-2.10,Not installed
+Features (features),7.x-2.11,Not installed
+FE Block (fe_block),7.x-1.0,Not installed
+FE Date (fe_date),7.x-1.0,Not installed
+FE Nodequeue (fe_nodequeue),7.x-1.0,Not installed
+FE Profile (fe_profile),7.x-1.0,Not installed
+Entity Reference (entityreference),7.x-1.5,Not installed
+Entity Reference Behavior Example (entityreference_behavior_example),7.x-1.5,Not installed
+Link (link),7.x-1.5,Not installed
+Markdown filter (markdown),7.x-1.5,Enabled
+Compound Object Zip File Importer (islandora_compound_object_zip_importer),7.x-1.11,Not installed
+Islandora (islandora),7.x-1.11,Enabled
+Islandora Book Batch (islandora_book_batch),7.x-1.11,Enabled
+Islandora Entities CSV Import (islandora_entities_csv_import),7.x-1.11,Enabled
+Islandora Newspaper Batch (islandora_newspaper_batch),7.x-1.11,Enabled
+Islandora Populator (islandora_populator),7.x-1.11,Enabled
+Islandora Solr Facet Pages (islandora_solr_facet_pages),7.x-1.11,Enabled
+Islandora Solr Metadata (islandora_solr_metadata),7.x-1.11,Enabled
+Islandora Webform (islandora_webform),7.x-1.4-rc1,Enabled
+Islandora Webform Ingest (islandora_webform_ingest),Enabled
+Islandora XSLT Populator (islandora_xslt_populator),7.x-1.11,Not installed
+Islandora Form - Fieldpanel element (islandora_form_fieldpanel),7.x-1.11,Enabled
+Islandora XML Form API (xml_form_api),7.x-1.11,Enabled
+Islandora XML Form Elements (xml_form_elements),7.x-1.11,Enabled
+Islandora XML Schema API (xml_schema_api),7.x-1.11,Enabled
+Objective Forms (objective_forms),7.x-1.11,Enabled
+PHP Lib (php_lib),7.x-1.11,Enabled
+Islandora Solr (islandora_solr),7.x-1.11,Enabled
+Islandora Solr display profiles (islandora_solr_config),7.x-1.11,Enabled
+Islandora Solr Views (islandora_solr_views),7.x-1.11,Enabled
+Bibutils (bibutils),7.x-1.11,Enabled
+Citation Exporter (citation_exporter),7.x-1.11,Enabled
+Citeproc (citeproc),7.x-1.11,Enabled
+DOI Importer (doi_importer),7.x-1.11,Enabled
+DOI Populator (doi_populator),7.x-1.11,Not installed
+EndNote XML Populator (endnotexml_populator),7.x-1.11,Not installed
+EndNoteXML Importer (endnotexml_importer),7.x-1.11,Enabled
+Islandora Audio (islandora_audio),7.x-1.11,Enabled
+Islandora basic collection (islandora_basic_collection),7.x-1.11,Enabled
+Islandora basic image (islandora_basic_image),7.x-1.11,Enabled
+Islandora Bibliography (islandora_bibliography),7.x-1.11,Enabled
+Islandora Book Solution Pack (islandora_book),7.x-1.11,Enabled
+Islandora compound object (islandora_compound_object),7.x-1.11,Enabled
+Islandora Disk Image Solution Pack (islandora_disk_image),7.x-1.11,Enabled
+Islandora DOI (islandora_doi),7.x-1.11,Enabled
+Islandora EndNote XML (islandora_endnotexml),7.x-1.11,Enabled
+Islandora Entities (islandora_entities),7.x-1.11,Enabled
+Islandora example simple text (islandora_example_simple_text),7.x-dev,Not installed
+Islandora Google Scholar (islandora_google_scholar),7.x-1.11,Enabled
+Islandora Large Image Solution Pack (islandora_large_image),7.x-1.11,Enabled
+Islandora newspaper (islandora_newspaper),7.x-1.11,Enabled
+Islandora Paged Content (islandora_paged_content),7.x-1.11,Enabled
+Islandora PDF (islandora_pdf),7.x-1.11,Enabled
+Islandora PMID (islandora_pmid),7.x-1.11,Enabled
+Islandora RIS (islandora_ris),7.x-1.11,Enabled
+Islandora Scholar (islandora_scholar),7.x-1.11,Enabled
+Islandora Scholar Embargo (islandora_scholar_embargo),7.x-1.11,Enabled
+Islandora Video Solution Pack (islandora_video),7.x-1.11,Enabled
+Islandora Web ARChive Solution Pack (islandora_web_archive),7.x-1.11,Enabled
+PMID Populator (pmid_populator),7.x-1.11,Not installed
+Pubmed Importer (pmid_importer),7.x-1.11,Enabled
+RIS Importer (ris_importer),7.x-1.11,Enabled
+RIS Populator (ris_populator),7.x-1.11,Not installed
+CSL (csl),7.x-1.11,Enabled
+Islandora Altmetrics Badge (islandora_altmetrics),Enabled
+Islandora Badges (islandora_badges),Enabled
+Islandora BagIt (islandora_bagit),7.x-1.11,Enabled
+Islandora Batch (islandora_batch),7.x-1.11,Enabled
+Islandora Batch Importer (islandora_importer),7.x-1.11,Enabled
+Islandora Batch Report (islandora_batch_report),7.x-1.11,Enabled
+Islandora Bookmark (islandora_bookmark),7.x-1.11,Enabled
+Islandora Bookmark CSV Exports (islandora_bookmark_csv_exports),7.x-1.11,Not installed
+Islandora Checksum (islandora_checksum),7.x-1.11,Enabled
+Islandora Checksum Checker (islandora_checksum_checker),7.x-1.11,Enabled
+Islandora FITS (islandora_fits),7.x-1.11,Enabled
+Islandora Image Annotation (islandora_image_annotation),Not installed
+Islandora MARCXML (islandora_marcxml),7.x-1.11,Enabled
+Islandora oaDOI (islandora_oadoi),Not installed
+Islandora OAI Provider (islandora_oai),7.x-1.11,Enabled
+Islandora OCR (islandora_ocr),7.x-1.11,Enabled
+Islandora pathauto (islandora_pathauto),7.x-1.11,Enabled
+Islandora PREMIS (islandora_premis),7.x-1.11,Enabled
+Islandora Scopus Badge (islandora_scopus),Not installed
+Islandora Simple Workflow (islandora_simple_workflow),7.x-1.11,Enabled
+Islandora Sync (islandora_sync),Not installed
+Islandora Usage Stats (islandora_usage_stats),7.x-1.11,Enabled
+Islandora Web of Science Badge (islandora_wos),Not installed
+Islandora Xacml Api (islandora_xacml_api),7.x-1.11,Enabled
+Islandora XACML Editor (islandora_xacml_editor),7.x-1.11,Enabled
+Islandora XML Form Builder (xml_form_builder),7.x-1.11,Enabled
+Islandora XML Forms (xml_forms),7.x-1.11,Enabled
+Islandora XML sitemap (islandora_xmlsitemap),7.x-1.11,Enabled
+Zip File Importer (zip_importer),7.x-1.11,Enabled
+Islandora Internet Archive BookReader (islandora_internet_archive_bookreader),7.x-1.11,Enabled
+Islandora OpenSeadragon (islandora_openseadragon),7.x-1.11,Enabled
+Islandora pdf.js (islandora_pdfjs),7.x-1.11,Enabled
+Islandora video.js (islandora_videojs),7.x-1.11,Enabled
+Panels translation (i18n_panels),7.x-3.9,Not installed
+Rules translation (rules_i18n),7.x-2.11,Not installed
+Nodequeue (nodequeue),7.x-2.1,Not installed
+Nodequeue Service (nodequeue_service),7.x-2.1,Not installed
+Smartqueue taxonomy (smartqueue),7.x-2.1,Not installed
+Colorbox (colorbox),7.x-2.13,Enabled
+Entity API (entity),7.x-1.9,Enabled
+Entity tokens (entity_token),7.x-1.9,Enabled
+Entity view modes (entity_view_mode),7.x-1.0-rc1,Not installed
+Environment indicator (environment_indicator),7.x-2.9,Not installed
+Environment indicator variables (environment_indicator_variable),7.x-2.9,Not installed
+ImageMagick (imagemagick),7.x-1.0,Enabled
+ImageMagick Advanced (imagemagick_advanced),7.x-1.0,Not installed
+Islandora Sync Field Collection (islandora_sync_field_collection),Not installed
+Islandora Sync Relation (islandora_sync_relation),Not installed
+Libraries (libraries),7.x-2.5,Enabled
+Pathauto (pathauto),7.x-1.3,Enabled
+Stage File Proxy (stage_file_proxy),7.x-1.8,Not installed
+Strongarm (strongarm),7.x-2.0,Not installed
+Token (token),7.x-1.7,Enabled
+Mini panels (panels_mini),7.x-3.9,Not installed
+Panel nodes (panels_node),7.x-3.9,Not installed
+Panels (panels),7.x-3.9,Not installed
+Panels In-Place Editor (panels_ipe),7.x-3.9,Not installed
+Rules (rules),7.x-2.11,Enabled
+Rules Scheduler (rules_scheduler),7.x-2.11,Not installed
+Rules UI (rules_admin),7.x-2.11,Not installed
+Google Analytics (googleanalytics),7.x-2.5,Not installed
+Features Extra test feature (features_extra_test),7.x-1.0,Not installed
+jQuery Update (jquery_update),7.x-2.7,Enabled
+Views (views),7.x-3.20,Enabled
+Views Bulk Operations (views_bulk_operations),7.x-3.5,Not installed
+Views Data Export (views_data_export),7.x-3.2,Enabled
+Views Slideshow (views_slideshow),7.x-3.9,Not installed
+Views Slideshow Simple Pager (views_slideshow_simple_pager),7.x-3.9,Not installed
+Views Slideshow: Cycle (views_slideshow_cycle),7.x-3.9,Not installed
+Views UI (views_ui),7.x-3.20,Enabled
+Webform (webform),7.x-4.18,Enabled
+Webform AJAX (webform_ajax),7.x-1.1,Enabled
+Webform Bonus Pack (webform_bonus),7.x-3.x-dev,Enabled
+Webform Digest (webform_digest),7.x-3.x-dev,Not installed
+Webform to Google Docs (webform_to_gdocs),7.x-4.3,Not installed
+Webform Workflow (webform_workflow),7.x-1.0-alpha2,Not installed
+XML sitemap (xmlsitemap),7.x-2.6,Enabled
+XML sitemap custom (xmlsitemap_custom),7.x-2.6,Enabled
+XML sitemap engines (xmlsitemap_engines),7.x-2.6,Not installed
+XML sitemap internationalization (xmlsitemap_i18n),7.x-2.6,Not installed
+XML sitemap menu (xmlsitemap_menu),7.x-2.6,Not installed
+XML sitemap node (xmlsitemap_node),7.x-2.6,Not installed
+XML sitemap taxonomy (xmlsitemap_taxonomy),7.x-2.6,Not installed
+XML sitemap user (xmlsitemap_user),7.x-2.6,Not installed
+Aggregator (aggregator),7.61,Disabled
+Bartik (bartik),7.61,Enabled
+Block (block),7.61,Disabled
+Blog (blog),7.61,Disabled
+Book (book),7.61,Disabled
+Color (color),7.61,Disabled
+Comment (comment),7.61,Disabled
+Contact (contact),7.61,Disabled
+Content translation (translation),7.61,Disabled
+Contextual links (contextual),7.61,Disabled
+Dashboard (dashboard),7.61,Disabled
+Database logging (dblog),7.61,Disabled
+Field (field),7.61,Disabled
+Field SQL storage (field_sql_storage),7.61,Disabled
+Field UI (field_ui),7.61,Disabled
+File (file),7.61,Disabled
+Filter (filter),7.61,Disabled
+Forum (forum),7.61,Disabled
+Garland (garland),7.61,Disabled
+Help (help),7.61,Disabled
+Image (image),7.61,Disabled
+List (list),7.61,Disabled
+Locale (locale),7.61,Disabled
+Menu (menu),7.61,Disabled
+Node (node),7.61,Disabled
+Number (number),7.61,Disabled
+OpenID (openid),7.61,Disabled
+Options (options),7.61,Disabled
+Overlay (overlay),7.61,Disabled
+Path (path),7.61,Disabled
+PHP filter (php),7.61,Disabled
+Poll (poll),7.61,Disabled
+RDF (rdf),7.61,Disabled
+Search (search),7.61,Disabled
+Seven (seven),7.61,Enabled
+Shortcut (shortcut),7.61,Disabled
+Stark (stark),7.61,Disabled
+Statistics (statistics),7.61,Disabled
+Syslog (syslog),7.61,Disabled
+System (system),7.61,Disabled
+Taxonomy (taxonomy),7.61,Disabled
+Testing (simpletest),7.61,Disabled
+Text (text),7.61,Disabled
+Toolbar (toolbar),7.61,Disabled
+Tracker (tracker),7.61,Disabled
+Trigger (trigger),7.61,Disabled
+Update manager (update),7.61,Disabled
+User (user),7.61,Disabled
+Bootstrap (bootstrap),7.x-3.22,Disabled
+Digital_Grinnell (Digital_Grinnell),7.x.1,Enabled
+Minimal (minimal),7.61,Disabled
+Standard (standard),7.61,Disabled
+root@2e9138e3c331:/var/www/html/sites/default#
