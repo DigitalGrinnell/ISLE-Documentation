@@ -251,4 +251,107 @@ So I put the site into maintenance mode from `#overlay=admin/config/development/
 
 Unfortunately, NONE of this worked, presumably because the site is not yet linked to my Fedora repository so there are NO collections to display.
 
-## Connecting the Site to Fedora and Solr
+## Reindexing Fedora
+
+I opened https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/docs/04_installation_migration/migration_reindex_process.md and attempted `Shutdown Fedora Method 1`, but I get a 404 error at `http://dgdocker1.grinnell.edu:8080/manager/html`.  So I tried visiting just `http://dgdocker1.grinnell.edu:8080` and I get the *Traefik* dashboard.  Moving on to `Shutdown Fedora Method 2`.
+
+I opened *Portainer* at `https://portainer1.grinnell.edu` and opened a shell/console/terminal in the `isle-fedora-dg` container.  The *Fedora* container is working, but it's pointed to a new/empty repository, and I can't open an admin web interface to it (nor to *Solr*), presumably because ports 8081 and 8082 are blocked.
+
+I made an urgent ticket request to open ports `8081, 8082, and 8083` to campus, and to create DNS entries `fedora1` and `solr1` so that I can write *Traefik* rules to provide *Fredora* and *Solr* dashboard access without port numbers.
+
+## Re-Configuring to Try again
+So, at this point the plan is to...
+
+- Spin down my stack... `docker-compose down`,
+- Modify `docker-compose.yml` volumes to point to the backup copy of my old *Fedora* data,
+- Spin the stack back up... `docker-compose up -d`,
+- Assess where we stand with the new site and old data.
+
+## So Far, So Good
+
+Just did `docker-compose up -d` as indicated above and the site, apparently with all my earlier changes, is back at https://dgdocker1.grinnell.edu.  
+
+Better still, when I visit the [Islandora Repository](https://dgdocker1.grinnell.edu/islandora/object/islandora%3Aroot) link on the home page... I can see some of my old objects!
+
+*Three cheers for the ICG and the awesome folks behind ISLE!*
+
+## Ports are Open!
+Lo-and-behold miracles never cease... the port open ticket I submitted just 2 hours ago has been completed, and I do indeed now have access to ports 8081, 8082 and 8083 from my connection on campus!  The advantages of having these ports open on the host should probably be documented in one of the host requirements documents.
+
+## Reindex Fedora
+Next step follows the [migration_reindex_process.md](https://github.com/Islandora-Collaboration-Group/ISLE-Documentation/blob/master/docs/04_installation_migration/migration_reindex_process.md) to reindex my *Fedora* content.
+
+I started by examining my `tomcat.env` file to determine what I had set for the `TOMCAT_MANAGER_USER` and `TOMCAT_MANAGER_PASS` variables.  Having identified those I was able to open the *Tomcat Manager* page at `https://dgdocker1.grinnell.edu:8081/manager/html` and stop *Fedora* using `Shutdown Fedora Method 1`.
+
+I was subsequently able to follow the directions in `Reindex Fedora RI (1 of 3)` and got my repository re-indexed in just under 7 minutes time.
+
+I moved on to `Reindex SQL database (2 of 3)` but could not log in to *MySQL* as root, getting...
+
+```
+root@a96078fddeff:/# mysql -h mysql -u root -pNotMyRealPassword
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'root'@'172.28.0.6' (using password: YES)
+```
+
+To work around this I used the *Portainer* dashboard to open a shell into the *MySQL* container where I was able to open a `mysql>` prompt using...
+
+```
+root@18570400f5d4:/# mysql -u root -p
+```
+I specified the password when prompted after the login command. continuing on...
+
+```
+use fedora3;
+show tables;
++---------------------+
+| Tables_in_fedora3   |
++---------------------+
+| dcDates             |
+| doFields            |
+| doRegistry          |
+| fcrepoRebuildStatus |
+| modelDeploymentMap  |
+| pidGen              |
++---------------------+
+6 rows in set (0.00 sec)
+
+truncate table dcDates;
+truncate table doFields;
+truncate table doRegistry;
+truncate table fcrepoRebuildStatus;
+truncate table modelDeploymentMap;
+truncate table pidGen;
+```
+So I returned to my *Fedora* container shell in the *Portainer* dashboard, and...
+
+```
+cd /usr/local/fedora/server/bin
+time /bin/sh fedora-rebuild.sh -r org.fcrepo.server.utilities.rebuild.SQLRebuilder > /usr/local/tomcat/logs/sql_ri.log 2>&1
+```
+**Note**: I advocate that folks always put `time` in front of any long-running scripts, like the one above, so that we get a sense of how long they take to run under different circumstances.  `13.25 minutes in my case`
+
+Moving on to `Reindex Solr (3 of 3)`...
+
+```
+cd /usr/local/tomcat/webapps/fedoragsearch/client
+time /bin/sh runRESTClient.sh localhost:8080 updateIndex fromFoxmlFiles
+```
+`Just under 53 minutes for me.`
+
+## Restart Fedora
+
+Having completed the re-indexing I returned to http://dgdocker1.grinnell.edu:8081/manager/html and used the link there there `Start` *Fedora*.  That worked.
+
+## Adding More Custom Code
+So, a visit to my home page shows one notice and one warning...
+
+```
+Notice: Undefined offset: 1 in Digital_Grinnell_preprocess_page() (line 131 of /var/www/html/sites/all/themes/digital_grinnell_theme/drupal7_theme_methods.php).
+
+User warning: The following module is missing from the file system: icu. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1143 of /var/www/html/includes/bootstrap.inc).
+```
+The warning I can easily take care of.  The `dg7` module that I loaded earlier has one rather obscure reference to another module of mine, `icu`, the *Islandora Common Utilities*.  As it turns out, that one function in `dg7` isn't going to be needed in an *ISLE* environment, so I'm going to stub off the function in `dg7` and just make it return a message indicating that the feature has been deprecated, just in case it is ever called again.
+
+I made the necessary changes in a new copy of `dg7` from https://github.com/GrinnellCollege-Private/dg7.git, moved the existing module out of the way in the *Apache* server at `/var/www/html/sites/all/modules/dg7`, and cloned the new module into its place.  I did `composer update` followed by `drush cc all` and now when I visit https://dgdocker1.grinnell.edu/islandora/object/islandora:root the missing `icu` warning is gone.  
+
+The offset notice remains so I forked https://DigitalGrinnell/digital_grinnell_theme to https://GrinnellCollege-Private/digital_grinnell_theme and committed a change to eliminate the notice.  Then, just as with `dg7` I replaced the code in *Apache*'s `/var/www/html/themes/digital_grinnell_theme` directory and repeated steps from above.  Now, when I visit https://dgdocker1.grinnell.edu/islandora/object/islandora:root the notice is gone too!
