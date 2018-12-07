@@ -365,4 +365,30 @@ drush pm-list --fields=Name,Version,Status --format=csv --no-core > modules.list
 ```
 This `drush` command output, piped to a .csv file, gives me two lists of ALL the non-core modules and themes available in each environment, along with their version and status ('Enabled', 'Not Installed', etc.).  I pulled these two lists together in an Excel spreadsheet and did a little 'VLOOKUP' magic to get an idea of what's in DG that's not yet enabled in ISLE.  *I found 30 "necessary" modules in DG that are not yet in ISLE, and another 30 that I can perhaps live without, at least for now.*
 
-I could install and enable all of these using the `drush` and/or `composer` methods employed above, but I'm going to investigate https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools first to see if that might be a better solution.  So, I've forked that project to https://github.com/DigitalGrinnell/ISLE-Drupal-Build-Tools and will take up the fight there.  Note that I've also created a *private* copy, not a fork, of the canonical *ISLE* repo at https://github.com/GrinnellCollege-Private/ISLE. 
+I could install and enable all of these using the `drush` and/or `composer` methods employed above, but I'm going to investigate https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools first to see if that might be a better solution.  So, I've forked that project to a *public* repo in https://github.com/DigitalGrinnell/ISLE-Drupal-Build-Tools and will take up the fight there.  Note that I've also created a *private* copy, not a fork, of the canonical *ISLE* repo at https://github.com/GrinnellCollege-Private/ISLE.
+
+## Going For Broke
+I spent the last 24 hours editing in the `Digital.Grinnell` branch of my https://github.com/DigitalGrinnell/ISLE-Drupal-Build-Tools repository and cleaning up some customizations of Islandora 7.x modules.  For details see my comments in the `isle_islandora_istaller.sh` file, and the two `.make` files in the `isle-drush_make/` directory on the `Digital.Grinnell` branch of https://github.com/DigitalGrinnell/ISLE-Drupal-Build-Tools.
+
+I have subsequently visited my vSphere console and created a snapshot of the `DGDocker1` host... so that I can easily restore to the current state if needed. Next, I modified a portion of the `.env` file at `dgdocker1:/opt/ISLE/` to read as follows...
+
+```
+## ISLE Drupal Build tools:
+
+# Pull build tools from git repo?  bool (true|false), default: true
+PULL_ISLE_BUILD_TOOLS=true
+
+# Repo and branch to pull?
+ISLE_BUILD_TOOLS_REPO=https://github.com/DigitalGrinnell/isle_drupal_build_tools.git
+ISLE_BUILD_TOOLS_BRANCH=Digital.Grinnell
+```
+Now I'm going to repeat a process I ran earlier...
+- Spin down my stack... `docker-compose down`,
+- Spin the stack back up... `docker-compose up -d`,
+- `time docker exec -it isle-apache-dg bash /utility-scripts/isle_drupal_build_tools/isle_islandora_installer.sh`,
+- ...watch for problems while the script runs...
+- Assess where we stand with the new modules, site, and new data.
+
+Huzzah!  Just under 18 minutes.  There were a handful of warnings, mostly about things that already exist, and NO ERRORS.  Complete output saved [in this gist](https://gist.github.com/McFateM/c97538057b3aff1c162dc83c12430cae).
+
+Now to see how the site is behaving...
