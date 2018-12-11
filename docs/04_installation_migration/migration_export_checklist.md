@@ -55,6 +55,20 @@ This data and these configurations will be used in conjunction with an Apache co
     * _File will have different name but this should be the enabled Apache vhost file of your production Islandora website._
     * _There may also be a seperate vhost that uses SSL and https. Copy that too if available._
 
+#### Digital Grinnell Command History
+As user `islandora` on host `dgdocker1`...
+```
+cd /opt/ISLE
+mkdir apache
+mkdir apache/html
+rsync -aruvi vagrant@digital.grinnell.edu:/var/www/drupal7/. apache/html/ --progress
+
+mkdir current_prod_islandora_config
+mkdir current_prod_islandora_config/apache
+rsync -aruvi vagrant@digital.grinnell.edu:/var/www/drupal7/sites/default/settings.php current_prod_islandora_config/apache/settings.php --progress
+rsync -aruvi vagrant@digital.grinnell.edu:/etc/php5/apache2/php.ini current_prod_islandora_config/apache/php.ini --progress
+rsync -aruvi vagrant@digital.grinnell.edu:/etc/apache2/sites-available/*.conf current_prod_islandora_config/apache/ --progress
+```
 
 ---
 
@@ -81,7 +95,14 @@ This data will be used in conjunction with a Fedora container.
         * /usr/local/fedora/`data/resourceIndex`
 ---
 
-### Gsearch
+#### Digital Grinnell Command History
+No commands to show here.  This data was backed up and copied earlier to the NFS share shown here mounted on as `/data` on `dgdocker1`:
+```
+Filesystem                   Size  Used Avail Use% Mounted on
+storage2:/nfsshare_dgdocker  1.3T  1.1T  209G  84% /data
+```
+
+### GSearch
 
 Copy the following below from the Islandora Production Server(s) to the suggested directory `current_prod_islandora_config/gsearch/` on the ISLE directory located on the local ISLE config laptop.
 
@@ -95,6 +116,20 @@ This data will be used in conjunction with a Fedora container.
 | repository.properties | Gsearch config file | /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/repository/FgsRepos/ | /current_prod_islandora_config/gsearch/ | Local ISLE config laptop |
 | islandora_transforms | Transformation XSLTs directory | /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/ | /current_prod_islandora_config/gsearch/ | Local ISLE config laptop |
 | foxmlToSolr.xslt | "top-level" transformational XSLT | /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/ | /current_prod_islandora_config/gsearch/ | Local ISLE config laptop |
+
+#### Digital Grinnell Command History
+As user `islandora` on host `dgdocker1`...
+```
+cd /opt/ISLE/current_prod_islandora_config
+mkdir gsearch
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/fedoragsearch.properties gsearch/ --progress
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/fgsconfig-basic-configDGOnSolr.properties gsearch/ --progress
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/fgsconfigObjects.properties gsearch/ --progress
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/repository/FgsRepos/repository.properties gsearch/ --progress
+mkdir gsearch/islandora_transforms
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/. gsearch/islandora_transforms/ --progress
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt gsearch/ --progress
+```
 
 ---
 
@@ -135,6 +170,20 @@ Here are a few pieces of documentation specific for the tasks above.
 * [Official MySQL GUI app - Workbench](https://www.mysql.com/products/workbench/) _For Linux, MacOS and Windows_
 * [Sequel Pro](https://sequelpro.com/) _MacOS only_
 
+#### Digital Grinnell Command History
+As user `vagrant` on host `digital7`...
+```
+cd /var/www/drupal7/sites/default
+drush cc all
+mysqldump -u digital -p digitalGrinnell | gzip > dg7.sql.gz
+```
+As user `islandora` on host `dgdocker1`...
+```
+cd /opt/ISLE/current_prod_islandora_config
+mkdir mysql
+rsync -aruvi vagrant@digital7.grinnell.edu:/var/www/drupal7/sites/default/dg7.sql.gz mysql/ --progress
+rsync -aruvi vagrant@digital7.grinnell.edu:/etc/mysql/my.cnf mysql/ --progress
+```
 ---
 
 ##Tomcat
@@ -147,9 +196,16 @@ This data will be used in conjunction with the Tomcat service found on a Fedora 
 | -------------    | -------------             | -------------                          | -------------                      | ------------- |
 | tomcat-users.xml | Tomcat server config file | /var/lib/tomcat7/conf/tomcat-users.xml | /current_prod_islandora_config/tomcat/ | Local ISLE config laptop |
 
+#### Digital Grinnell Command History
+As user `islandora` on host `dgdocker1`...
+```
+cd /opt/ISLE/current_prod_islandora_config
+mkdir tomcat
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/tomcat/conf/tomcat-users.xml tomcat/ --progress
+```
 ---
 
-##Solr
+### Solr
 
 Copy the following below from the Islandora Production Server(s) to the suggested directory to the ISLE directory `current_prod_islandora_config/solr` located on the local ISLE config laptop.
 
@@ -160,3 +216,13 @@ This data will be used in conjunction with a SOLR container.
 | schema.xml     | Solr schema file                         | /var/lib/tomcat7/webapps/solr/collection1/conf/schema.xml     | /current_prod_islandora_config/solr | Local ISLE config laptop |
 | solrconfig.xml | Solr config file                         | /var/lib/tomcat7/webapps/solr/collection1/conf/solrconfig.xml | /current_prod_islandora_config/solr | Local ISLE config laptop |
 | stopwords.txt  | Solr file for filtering out common words | /var/lib/tomcat7/webapps/solr/collection1/conf/stopwords.txt  | /current_prod_islandora_config/solr | Local ISLE config laptop |
+
+#### Digital Grinnell Command History
+On host `dgdocker1` as user `mcfatem`...
+
+```
+cd /data
+mkdir solr
+cd solr
+rsync -aruvi vagrant@repositoryx.grinnell.edu:/usr/local/fedora/solr/. . --progress
+```
