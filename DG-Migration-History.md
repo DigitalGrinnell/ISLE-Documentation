@@ -399,3 +399,5 @@ So, I did this...
 - In the Digital.Grinnell branch I need to copy `templates/isle_islandora_installer.sh.tpl` and make a new `grinnell_installer.sh` in the root of the repository.
 - Make additions to the two `.make` files, leaving them “in-place”, but note that end-of-line comments are NOT allowed!
 - Make minor additions to `migrations_site_vsets.sh`, also "in-place"
+
+Ultimately, I had to comment out the enabling of my `digital_grinnell_theme` (not sure why?) and some modules/extensions, and I got a relatively clean run with a few expected warnings, and one error that I'm going to ignore for now.  The complete output is in [this gist](https://gist.github.com/McFateM/f5e72ad7c4bf2e5719165db5cb6bb4ed).
