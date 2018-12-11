@@ -401,3 +401,16 @@ So, I did this...
 - Make minor additions to `migrations_site_vsets.sh`, also "in-place"
 
 Ultimately, I had to comment out the enabling of my `digital_grinnell_theme` (not sure why?) and some modules/extensions, and I got a relatively clean run with a few expected warnings, and one error that I'm going to ignore for now.  The complete output is in [this gist](https://gist.github.com/McFateM/f5e72ad7c4bf2e5719165db5cb6bb4ed).
+
+Improvement noted... this time I was able to login to the new site as the superuser (`user 1`) without having to reset my password via `drush`.  Having done that I visited the site [Appearance](https://dgdocker1.grinnell.edu/#overlay=admin/appearance) page and set my `Digital Grinnell` theme as enabled, and as the default.  That worked nicely; still not sure why I was unable to do the same in my installer script though?
+
+The following errors/warnings were present at https://dgdocker1.grinnell.edu/islandora/object/islandora%3Aroot once the theme was set:
+```
+Error searching Solr index "400" Status:
+Warning: Invalid argument supplied for foreach() in islandora_solr_views_query->execute() (line 179 of /var/www/html/sites/all/modules/islandora/islandora_solr_views/islandora_solr_views_query.inc).
+PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isle_dg.xml_form_builder_form_associations' doesn't exist: SELECT fa.* FROM {xml_form_builder_form_associations} fa WHERE ( (content_model = :db_condition_placeholder_0) ); Array ( [:db_condition_placeholder_0] => islandora:collectionCModel ) in xml_form_builder_get_database_associations() (line 90 of /var/www/html/sites/all/modules/islandora/islandora_xml_forms/builder/includes/associations.inc).
+```
+
+I'm going to post this document as a `markdown` formatted article, and promote it to the front page of the site again.  To do that I needed to visit [the modules](https://dgdocker1.grinnell.edu/#overlay=admin/modules) page to enable `Markdown filter` module (*Odd*, I thought I had done that in the installer script?).  Then I visited [the configuration page](https://dgdocker1.grinnell.edu/#overlay=admin/config) and added `markdown` as a text format option.  Having done that I clicked `Add content` and add this text, actually `markdown`, to the site.
+
+Now, it's time to check some of my other settings and see if I can remedy the above issues ASAP.
