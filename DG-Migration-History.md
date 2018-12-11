@@ -414,3 +414,7 @@ PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isle_dg
 I'm going to post this document as a `markdown` formatted article, and promote it to the front page of the site again.  To do that I needed to visit [the modules](https://dgdocker1.grinnell.edu/#overlay=admin/modules) page to enable `Markdown filter` module (*Odd*, I thought I had done that in the installer script?).  Then I visited [the configuration page](https://dgdocker1.grinnell.edu/#overlay=admin/config) and added `markdown` as a text format option.  Having done that I clicked `Add content` and add this text, actually `markdown`, to the site.
 
 Now, it's time to check some of my other settings and see if I can remedy the above issues ASAP.
+
+## Checking Module Config and Site Settings
+
+In order to understand and hopefully mitigate the errors/warnings shown above, I'm visiting
