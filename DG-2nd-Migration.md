@@ -193,10 +193,8 @@ I successfully visited https://dgdocker1.grinnell.edu/, with my `docker-compose 
 
 ```
 User warning: The following module is missing from the file system: <em class="placeholder">ldap_sso</em>. For information about how to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>. in trigger_error() (line 1143 of /var/www/html/includes/bootstrap.inc).
-
 Warning: ldap_start_tls(): Unable to start TLS: Can't contact LDAP server in ldap_start_tls() (line 297 of /var/www/html/sites/all/modules/contrib/ldap/ldap_servers/LdapServer.class.php).
-
-Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc). =>
+Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc).
 ```
 
 ...and a handful of other issues shown in these screen shots...
@@ -205,3 +203,15 @@ Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;D
        "Status Report - Part 1")
 ![Status Report Part 3 of 2](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/dg-migration/Screen%20Shot%202018-12-11%20at%209.00.03%20PM.png
               "Status Report - Part 2")
+
+## Spin Down and Back Up Again
+
+I still have an 'open' `docker-compose up | tee up.out` process running, so now I'm going to shut that down, then bring it back up, but detached from my terminal with `docker-compose up -d`.  Then I'll return to the site and begin to address the warnings and issues reported above.
+
+From a terminal open to `islandora@DGDocker1`, all previous Docker bits were cleaned and a new instance created like so...
+
+```
+cd /opt/ISLE
+docker-compose down
+docker-compose up -d
+```
