@@ -201,4 +201,7 @@ Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;D
 
 ...and a handful of other issues shown in these screen shots...
 
-![Status Report Part 1 of 2](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Status Report Part 1 of 2](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/dg-migration/Screen%20Shot%202018-12-11%20at%208.59.09%20PM.png
+       "Status Report - Part 1")
+![Status Report Part 3 of 2](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/dg-migration/Screen%20Shot%202018-12-11%20at%209.00.03%20PM.png
+              "Status Report - Part 2")
