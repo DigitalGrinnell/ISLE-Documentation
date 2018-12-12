@@ -117,11 +117,15 @@ fedora:
 ```
 
 ## Modifying 'settings.php'
-In order for the imported Drupal database to work properly here, we need to bring the new DB credentials into `/opt/ISLE/persistent/html/sites/default/settings.php` with these changes...
+In order for the imported Drupal database to work properly here, we need to bring the new DB credentials, and the new/temporary address, into `/opt/ISLE/persistent/html/sites/default/settings.php` with these changes...
 
 ### Old 'settings.php'...
 
 ```
+$base_url = 'https://digital.grinnell.edu';  // NO trailing slash!
+
+$cookie_domain = 'digital.grinnell.edu';
+
 $databases = array (  
   'default' =>
   array (
@@ -142,6 +146,10 @@ $databases = array (
 ### New 'settings.php'...
 
 ```
+$base_url = 'https://dgdocker1.grinnell.edu';  // NO trailing slash!  @TODO...This is a temporary address!
+
+$cookie_domain = 'dgdocker1.grinnell.edu';     // @TODO...This is temporary!
+
 $databases = array (  
   'default' =>
   array (
@@ -171,10 +179,26 @@ docker rm -v $(docker ps -qa)
 docker image rm $(docker image ls -q)
 docker system prune
 
-docker-compose up | tee up.out 
+docker-compose up | tee up.out
 ```
 
 ## After Initial Spin-Up -- DB Import
 
-Using *Portainer* at https://portainer1.grinnell.edu, and a terminal into the `isle-mysql-dg` container and the `/import` folder...
-`root@f3d2a5159757:/import# gunzip -c dg7.sql.gz | mysql -u isle_dg_user -p isle_dg`
+Using *Portainer* at https://portainer1.grinnell.edu, and a terminal into the `isle-mysql-dg` container...
+`root@f3d2a5159757:/# gunzip -c import/dg7.sql.gz | mysql -u isle_dg_user -p isle_dg`
+
+## Login as User 1 - System Admin
+
+I successfully visited https://dgdocker1.grinnell.edu/, with my `docker-compose up` command still running, and successfully logged in as `User 1`, alias *System Admin*.  Next, I visited https://dgdocker1.grinnell.edu/admin/reports/status to get an sense of any "known problems" and found three warnings...
+
+```
+User warning: The following module is missing from the file system: <em class="placeholder">ldap_sso</em>. For information about how to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>. in trigger_error() (line 1143 of /var/www/html/includes/bootstrap.inc).
+
+Warning: ldap_start_tls(): Unable to start TLS: Can't contact LDAP server in ldap_start_tls() (line 297 of /var/www/html/sites/all/modules/contrib/ldap/ldap_servers/LdapServer.class.php).
+
+Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc). =>
+```
+
+...and a handful of other issues shown in these screen shots...
+
+![Status Report Part 1 of 2](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
