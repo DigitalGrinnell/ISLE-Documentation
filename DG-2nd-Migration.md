@@ -249,3 +249,14 @@ WD memcache: You must enable the PHP memcache (recommended) or memcached extensi
 memcache.inc.
 WD memcache: Failed to connect to memcache server: 127.0.0.1:11211                             [error]
 ```
+
+Going to have a look at my `settings.php` file now... Found lots of `memcache` gunk at the bottom of the file and have commented it out.
+
+Now when I spin back up I'm getting errors about `memcache_admin`, so...
+
+```
+root@f62e2c1cd861:/var/www/html/sites/default# drush dis memcache_admin
+root@f62e2c1cd861:/var/www/html/sites/default# drush cc all
+```
+
+Eureka!  The site is back and it's MUCH FASTER than before!
