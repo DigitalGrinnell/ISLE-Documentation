@@ -235,3 +235,17 @@ Checking logs and opening some of the admin interfaces pointed out one critical 
 
 So, I opened `/home/islandora/solr/collection1/conf/schema.xml` on the *DGDocker1* host and removed `maxChars=300` from four lines like this one:
 `<field name="dc.relation_s" type="string" maxChars="300" indexed="true" stored="true" multiValued="true"/>`.  That produced four modified lines like this: `<field name="dc.relation_s" type="string" indexed="true" stored="true" multiValued="true"/>`.  I subsequently killed the `isle-solr-dg` container and did a new `docker-compose up -d`, and the problem was fixed.
+
+## Site Performance is Very Poor
+
+https://dgdocker1.grinnell.edu is working, but it's performing very poorly with very long page-load times.  I'm seeing a number of syslog warnings about `memcache` module not working, and I suspect that could be a big part of the problem.  I'm going to turn `memcache` off and see what happens.
+
+And I got this...
+```
+root@3c8268dfcc7d:/var/www/html/sites/default# drush dis memcache
+memcache is already disabled.                                                                  [ok]
+There were no extensions that could be disabled.                                               [ok]
+WD memcache: You must enable the PHP memcache (recommended) or memcached extension to use      [error]
+memcache.inc.
+WD memcache: Failed to connect to memcache server: 127.0.0.1:11211                             [error]
+```
