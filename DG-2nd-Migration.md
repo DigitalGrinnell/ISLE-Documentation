@@ -215,3 +215,23 @@ cd /opt/ISLE
 docker-compose down
 docker-compose up -d
 ```
+## Accessing the Site
+
+The stack came back up just fine so I developed this handy table of addresses to help with browsing the site and its admin interfaces:
+
+| Address                                                 | Description                 |
+| ---                                                     | ---                         |
+| https://dgdocker1.grinnell.edu                          | The site                    |
+| https://traefik1.grinnell.edu                           | *Traefik* admin interface   |
+| https://portainer1.grinnell.edu                         | *Portainer* admin interface |
+| https://dgdocker1.grinnell.edu:8081                     | *Tomcat* status             |
+| https://dgdocker1.grinnell.edu:8081/fedora/admin/       | *Fedora* Web Administrator  |
+| https://dgdocker1.grinnell.edu:8081/fedoragsearch/rest/ | *FGSearch* REST interface    |
+| https://dgdocker1.grinnell.edu:8082/solr/#/             | *Solr* admin interface      |
+
+## One Critical Solr Schema Problem
+
+Checking logs and opening some of the admin interfaces pointed out one critical problem with *Solr*.  *Digital Grinnell* currently runs *Solr* version 4.2.1 but the `isle-solr-dg` container runs version 4.10.4, and there's at least one schema difference between the two... the newer version no longer allows use of a `maxChars` attribute in `field` specifications.  
+
+So, I opened `/home/islandora/solr/collection1/conf/schema.xml` on the *DGDocker1* host and removed `maxChars=300` from four lines like this one:
+`<field name="dc.relation_s" type="string" maxChars="300" indexed="true" stored="true" multiValued="true"/>`.  That produced four modified lines like this: `<field name="dc.relation_s" type="string" indexed="true" stored="true" multiValued="true"/>`.  I subsequently killed the `isle-solr-dg` container and did a new `docker-compose up -d`, and the problem was fixed.
