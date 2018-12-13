@@ -259,4 +259,25 @@ root@f62e2c1cd861:/var/www/html/sites/default# drush dis memcache_admin
 root@f62e2c1cd861:/var/www/html/sites/default# drush cc all
 ```
 
-Eureka!  The site is back and it's MUCH FASTER than before!
+Eureka!  The site is back and it's MUCH FASTER than before!  Still some obvious issues to be worked out.
+
+## Private Filesystem
+So, my production instance of DG declares a "private" file system, with a path outside of the webroot, as advised.  **I don't think the migration documents address this issue, but I could be wrong?**  In any case, I'm going to create a path on my host and map it into the `apache` service container in my `docker-compose.yml`, and see what happens.
+
+As user `islandora` on the `DGDocker1` host...
+
+```
+mkdir ~/private
+chmod 755 ~/private
+cd /opt/ISLE
+docker-compose rm -f -s -v apache     # kills ONLY the isle-apache-dg container
+```  
+And from a terminal on `digital7`...
+```
+rsync -aruvi . islandora@dgdocker1.grinnell.edu:/home/islandora/private/ --progress
+```
+Adding this line to the `apache | volumes` portion of `docker-compose.yml`...
+```
+      - /home/islandora/private:/var/private
+```
+Now back to `/opt/ISLE` and `docker-compose up -d`.
