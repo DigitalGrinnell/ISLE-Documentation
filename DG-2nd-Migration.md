@@ -65,7 +65,7 @@ find . -type f -size +99M                           # check for any files greate
 ```
 
 ### For the Fedora Container...
-No commands to show here.  This data was backed up and copied earlier to the NFS share shown here mounted on as `/data` on `dgdocker1`:
+No commands to show here.  This data was backed up and copied earlier to the NFS share shown here mounted as `/data` on `dgdocker1`:
 ```
 Filesystem                   Size  Used Avail Use% Mounted on
 storage2:/nfsshare_dgdocker  1.3T  1.1T  209G  84% /data
