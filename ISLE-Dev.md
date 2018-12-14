@@ -80,3 +80,37 @@ A visit to the site, https://isle.localdomain, shows that this worked since the 
 ## Adding Other Critical Modules
 
 I've prepared [a document](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/Module-Comparison.md) comparing the modules/themes in https://digital.grinnell.edu with those found in a pristine ISLE stack.  
+
+### Phase 1 - Critical Installations and Configuration
+
+The theme and custom module documented above were part of critical **Phase 1** installations.  Other installations or upgrades necessary in **Phase 1** are documented in subsections here.
+
+#### Islandora Solr Collection View
+Repository | Description
+--- | ---
+https://github.com/Islandora-Labs/islandora_solr_collection_view | Islandora Solr Collection View module
+
+Returning to the open `bash` shell inside the running `isle-apache-ld` container...
+
+Command | Result
+--- | ---
+`cd /var/www/html/sites/all/modules/islandora` | Set working directory
+`git clone https://github.com/Islandora-Labs/islandora_solr_collection_view.git` | Cloned the module
+`drush en islandora_solr_collection_view` | Enabled the module
+`drush cc all` | Cleared all caches  
+
+*Solr* is not yet engaged here since we stil have NO content, so enabling this module produces warnings, as expected.  Next up, we need to install the *Islandora Multi-Importer* module so we can ingest some content to work with!
+
+#### Islandora Multi-Importer
+Repository | Description
+--- | ---
+https://github.com/mnylc/islandora_multi_importer | Islandora Multi-Importer
+
+Returning to the open `bash` shell inside the running `isle-apache-ld` container...
+
+Command | Result
+--- | ---
+`cd /var/www/html/sites/all/modules/islandora` | Set working directory
+`git clone https://github.com/mnylc/islandora_multi_importer.git` | Cloned the module
+`cd islandora_multi_importer` | Set working directory
+`composer update` | Install using *Composer* as required

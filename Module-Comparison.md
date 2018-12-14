@@ -1,4 +1,4 @@
-This document was generated to compare the status of *Drupal* modules and themes from https://digital.grinnell.edu with a pristine ISLE installation of Islandora.  The first three columns show the *Name*, *Version* and *Status* of components from https://digital.grinnell.edu; the next column is where I'm indicating which phase of migration/development updates need to be made in, if any; and the last two columns show the component's corresponding *Version* and *Status* in ISLE before any action is taken.
+This document was generated to compare the status of *Drupal* modules and themes from https://digital.grinnell.edu with a pristine ISLE installation of Islandora.  The first three columns show the *Name*, *Version* and *Status* of components from https://digital.grinnell.edu; the next column is where I'm indicating which **phase** of migration/development updates need to be made in and providing a link to the project to be installed, if any; and the last two columns show the component's corresponding *Version* and *Status* in ISLE *before* any action is/was taken.
 
 | Name | from DG Version | Status |	*Action* | from ISLE Version | Status |
 | ---  | ---             | ---    | ---      | ---               | ---    |
@@ -65,6 +65,7 @@ This document was generated to compare the status of *Drupal* modules and themes
 |Islandora JW Player (islandora_jwplayer)	|7.x	|Enabled	|Install and Enable | | |
 |Islandora Large Image Solution Pack (islandora_large_image)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora Mods Display Changes (islandora_mods_display)	|master	|Enabled	|Install and Enable | | |
+|Islandora Multi-Importer (islandora_multi_importer) |master |Composer |**Phase 1** [Link](https://github.com/mnylc/islandora_multi_importer) |   |   |
 |Islandora OAI Provider (islandora_oai)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora OCR (islandora_ocr)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora OpenSeadragon (islandora_openseadragon)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
@@ -75,7 +76,7 @@ This document was generated to compare the status of *Drupal* modules and themes
 |Islandora Scholar (islandora_scholar)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora Solr (islandora_solr)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora Solr Collection Search (islandora_solr_collection_search)	|?	|Enabled	|Install and Enable | | |
-|Islandora Solr Collection View (islandora_solr_collection_view)	|7.x	|Enabled	|**Phase 1** | | |
+|Islandora Solr Collection View (islandora_solr_collection_view)	|7.x	|Enabled	|**Phase 1**  [Link](https://github.com/Islandora-Labs/islandora_solr_collection_view)| | |
 |Islandora Solr display profiles (islandora_solr_config)	|7.x-dev	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora Solr Facet Pages (islandora_solr_facet_pages)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
 |Islandora Solr Metadata (islandora_solr_metadata)	|7.x	|Enabled	|OK	|7.x-1.11	|Enabled|
