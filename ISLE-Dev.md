@@ -79,4 +79,4 @@ A visit to the site, https://isle.localdomain, shows that this worked since the 
 
 ## Adding Other Critical Modules
 
-I've prepared a document comparing the modules/themes in https://digital.grinnell.edu with those found in a pristine ISLE stack.  The document is https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/ModuleComparison.md but it doesn't display well in GitHub for some reason.
+I've prepared [a document](https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/Module-Comparison.md) comparing the modules/themes in https://digital.grinnell.edu with those found in a pristine ISLE stack.  
