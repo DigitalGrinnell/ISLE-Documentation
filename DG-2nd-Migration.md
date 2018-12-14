@@ -305,3 +305,12 @@ root@8b20dd1b4177:/var/www/html/sites/default# drush cc all
 That took care of the first warning about `ldap_sso` not found in the filesystem.  Now checking the logs for details about the `ldap_start_tls()` warning...
 
 Comparing LDAP settings from https://digital.grinnell.edu with those at https://dgdocker1.grinnell.edu I found that in the new site the `ldap_authentication` module was disabled; that was not the case with https://digital.grinnell.edu.  So, I enabled the module and ensured it is turned ON, then made sure all the settings match between instances of the LDAP module.
+
+Still no good, but I learned that LDAP via TLS uses port 636, so I'm going to try adding this spec to my `docker-compose.yml`:
+```
+ports:
+  - "636:636"      # added for LDAP	over TLS
+  - "389:389"      # added for LDAP	over SSL
+```
+
+These changes did NOT help.  So I tried opening them to *Traefik*, and again, no help.  8^(  Going to need help from ITS, or someone, on this issue.
