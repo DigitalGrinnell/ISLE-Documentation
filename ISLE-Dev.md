@@ -40,6 +40,13 @@ https://github.com/Islandora-Collaboration-Group/ISLE-Documentation  | The canon
 https://portainer.isle.localdomain/#/home | The stack's Portainer admin dashboard | None
 https://admin.isle.localdomain/dashboard/ | The stack's Traefik admin dashboard | None
 
+## Opening `bash` in the Apache Container
+This is something we'll want to do quite often.  It can be achieved using *Portainer*, but there's another way that is perhaps a little more convenient:
+
+  From a terminal on your `host`/workstation... `docker exec -it isle-apache-ld bash`.  
+
+  Another thing that we may wish to do at times... change ownership of files in the *Apache* container.   Typically, from within a `bash` terminal iside *Apache*... `chown -R islandora:www-data /var/www/html/sites/*`
+
 ## Adding Our Custom Theme
 
 Repository | Description
@@ -112,5 +119,6 @@ Command | Result
 --- | ---
 `cd /var/www/html/sites/all/modules/islandora` | Set working directory
 `git clone https://github.com/mnylc/islandora_multi_importer.git` | Cloned the module
-`cd islandora_multi_importer` | Set working directory
-`composer update` | Install using *Composer* as required
+`cd islandora_multi_importer` | Set working directory.  **Important!**
+`composer install` | Install using *Composer* as required
+`drush -y en islandora_multi_importer`  | Enable the module  
