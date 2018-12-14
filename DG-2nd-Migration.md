@@ -229,14 +229,17 @@ The stack came back up just fine so I developed this handy table of addresses to
 | https://dgdocker1.grinnell.edu:8081/fedoragsearch/rest/ | *FGSearch* REST interface    |
 | https://dgdocker1.grinnell.edu:8082/solr/#/             | *Solr* admin interface      |
 
-## One Critical Solr Schema Problem
+## Addressing Known Issues
+I'm currently working through a list of known problems/issues.  I'll address each one individually with its own subsection here...
+
+### One Critical Solr Schema Problem
 
 Checking logs and opening some of the admin interfaces pointed out one critical problem with *Solr*.  *Digital Grinnell* currently runs *Solr* version 4.2.1 but the `isle-solr-dg` container runs version 4.10.4, and there's at least one schema difference between the two... the newer version no longer allows use of a `maxChars` attribute in `field` specifications.  
 
 So, I opened `/home/islandora/solr/collection1/conf/schema.xml` on the *DGDocker1* host and removed `maxChars=300` from four lines like this one:
 `<field name="dc.relation_s" type="string" maxChars="300" indexed="true" stored="true" multiValued="true"/>`.  That produced four modified lines like this: `<field name="dc.relation_s" type="string" indexed="true" stored="true" multiValued="true"/>`.  I subsequently killed the `isle-solr-dg` container and did a new `docker-compose up -d`, and the problem was fixed.
 
-## Site Performance is Very Poor
+### Site Performance is Very Poor
 
 https://dgdocker1.grinnell.edu is working, but it's performing very poorly with very long page-load times.  I'm seeing a number of syslog warnings about `memcache` module not working, and I suspect that could be a big part of the problem.  I'm going to turn `memcache` off and see what happens.
 
@@ -261,23 +264,44 @@ root@f62e2c1cd861:/var/www/html/sites/default# drush cc all
 
 Eureka!  The site is back and it's MUCH FASTER than before!  Still some obvious issues to be worked out.
 
-## Private Filesystem
+### Private Filesystem
 So, my production instance of DG declares a "private" file system, with a path outside of the webroot, as advised.  **I don't think the migration documents address this issue, but I could be wrong?**  In any case, I'm going to create a path on my host and map it into the `apache` service container in my `docker-compose.yml`, and see what happens.
 
 As user `islandora` on the `DGDocker1` host...
 
 ```
 mkdir ~/private
-chmod 755 ~/private
+chmod 777 ~/private
 cd /opt/ISLE
 docker-compose rm -f -s -v apache     # kills ONLY the isle-apache-dg container
 ```  
 And from a terminal on `digital7`...
 ```
-rsync -aruvi . islandora@dgdocker1.grinnell.edu:/home/islandora/private/ --progress
+rsync -aruvi /var/private/. root@dgdocker1.grinnell.edu:/home/islandora/private/ --progress
 ```
 Adding this line to the `apache | volumes` portion of `docker-compose.yml`...
 ```
       - /home/islandora/private:/var/private
 ```
-Now back to `/opt/ISLE` and `docker-compose up -d`.
+Now back to `/opt/ISLE` and `docker-compose up -d`.  Previous warnings about not finding `private:///.htaccess` are gone so I think we're good now!
+
+### LDAP Problems
+Seeing lots of LDAP issues in the new site.  For example...
+```
+User warning: The following module is missing from the file system: <em class="placeholder">ldap_sso</em>. For information about how to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>. in trigger_error() (line 1143 of /var/www/html/includes/bootstrap.inc).
+
+Warning: ldap_start_tls(): Unable to start TLS: Can't contact LDAP server in ldap_start_tls() (line 297 of /var/www/html/sites/all/modules/contrib/ldap/ldap_servers/LdapServer.class.php).
+
+LDAP Server status: Grinnell_LDAP (ldap.grinnell.edu)	Connection: Failed, check logs for details.
+```
+
+In response to these warnings, I did the following in a bash terminal inside the `isle-apache-dg` container...
+
+```
+root@8b20dd1b4177:/var/www/html/sites/default# drush dl ldap_sso
+Project ldap_sso (7.x-2.3) downloaded to /var/www/html/sites/default/modules/contrib/ldap_sso. [success]
+root@8b20dd1b4177:/var/www/html/sites/default# drush cc all
+```
+That took care of the first warning about `ldap_sso` not found in the filesystem.  Now checking the logs for details about the `ldap_start_tls()` warning...
+
+Comparing LDAP settings from https://digital.grinnell.edu with those at https://dgdocker1.grinnell.edu I found that in the new site the `ldap_authentication` module was disabled; that was not the case with https://digital.grinnell.edu.  So, I enabled the module and ensured it is turned ON, then made sure all the settings match between instances of the LDAP module.
