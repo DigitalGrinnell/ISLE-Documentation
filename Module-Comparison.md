@@ -1,13 +1,14 @@
 This document was generated to compare the status of *Drupal* modules and themes from https://digital.grinnell.edu with a pristine ISLE installation of Islandora.  The first three columns show the *Name*, *Version* and *Status* of components from https://digital.grinnell.edu; the next column is where I'm indicating which phase of migration/development updates need to be made in, if any; and the last two columns show the component's corresponding *Version* and *Status* in ISLE before any action is taken.
 
-Name | from DG Version | Status |	*Action* | from ISLE Version | Status
---- | --- | --- | --- | ---
-Add another (addanother) |7.x-2.2 |Enabled	|?
-Administration theme (admin_theme)	|7.x-1.0	|Enabled	|???
-Advanced help (advanced_help)	|7.x-1.4	|Enabled	|?
-Announcements (announcements)	|7.x-1.x-dev	|Enabled	|Install and Enable
-Bibutils (bibutils)	|7.x-dev	|Enabled	|OK	|7.x-1.11	|Enabled
-Bootstrap (bootstrap)	|7.x-3.20	|Enabled	|OK	|7.x-3.22	|Disabled
+| Name | from DG Version | Status |	*Action* | from ISLE Version | Status |
+| --- | --- | --- | --- | --- |
+| Add another (addanother) |7.x-2.2 |Enabled	|?|
+| Administration theme (admin_theme)	|7.x-1.0	|Enabled	|???|
+| Advanced help (advanced_help)	|7.x-1.4	|Enabled	|?|
+| Announcements (announcements)	|7.x-1.x-dev	|Enabled	|Install and Enable|
+| Bibutils (bibutils)	|7.x-dev	|Enabled	|OK	|7.x-1.11	|Enabled|
+| Bootstrap (bootstrap)	|7.x-3.20	|Enabled	|OK	|7.x-3.22	|Disabled|
+
 Chaos tools (ctools)	|7.x-1.14	|Enabled	|OK	|7.x-1.14	|Enabled
 Citeproc (citeproc)	|7.x-dev	|Enabled	|OK	|7.x-1.11	|Enabled
 CKEditor (ckeditor)	|7.x-1.18	|Enabled	|?
