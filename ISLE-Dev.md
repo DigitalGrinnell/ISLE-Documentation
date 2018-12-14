@@ -79,18 +79,4 @@ A visit to the site, https://isle.localdomain, shows that this worked since the 
 
 ## Adding Other Critical Modules
 
-Repository | Description
---- | ---
-https://github.com/DigitalGrinnell/dg7 | The DG7 custom module
-
-Returning to the open `bash` shell inside the running `isle-apache-ld` container...
-
-Command | Result
---- | ---
-`cd /var/www/html/sites/default` | Set working directory
-`mkdir modules` | Created `modules` directory
-`git clone https://github.com/DigitalGrinnell/dg7.git modules/dg7` | Cloned the module
-`drush en dg7` | Enabled the module
-`drush cc all` | Cleared all caches  
-
-A visit to the site, https://isle.localdomain, shows that this worked since the user login prompt has been modified by the new module.  Otherwise, there's still not much there to see yet.
+I've prepared a document comparing the modules/themes in https://digital.grinnell.edu with those found in a pristine ISLE stack.  The document is https://github.com/DigitalGrinnell/ISLE-Documentation/blob/master/ModuleComparison.md but it doesn't display well in GitHub for some reason.

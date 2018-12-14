@@ -26,7 +26,7 @@ Date Tools (date_tools)	|7.x-2.10	|Enabled	|OK	|7.x-2.10	|Not installed
 Date Views (date_views)	|7.x-2.10	|Enabled	|OK	|7.x-2.10	|Enabled
 Delete content and users (delete_all)	|7.x-1.1	|Enabled	|?
 Devel (devel)	|7.x-1.6	|Enabled	|OK	|7.x-1.6	|Not Installed
-Digital Grinnell v7 Code (dg7)	|master	|Enabled	|**Phase 1**		
+Digital Grinnell v7 Code (dg7)	|master	|Enabled	|**Phase 1**
 Digital_Grinnell_Theme (digital_grinnell_theme)	|master	|Enabled	|**Phase 1**
 Drupal-to-Drupal migration (migrate_d2d)	|7.x-2.1	|Enabled	|?
 Email (email)	|7.x-1.3	|Enabled	|Install and Enable
