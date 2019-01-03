@@ -314,3 +314,55 @@ ports:
 ```
 
 These changes did NOT help.  So I tried opening them to *Traefik*, and again, no help.  8^(  Going to need help from ITS, or someone, on this issue.
+
+**Important!** Before departing for her break and sabbatical, Julia found that the problem is in *PHP 5.6*... the *LDAP* package for *Ubuntu 18.04* isn't available for older versions of *PHP*, only for *PHP 7*.  Fixing this is going to require a local/workstation environment where I can safely attempt to introduce the new *PHP*.
+
+## Making DGDocker1.Grinnell.edu Ready for Editing
+
+Due to setbacks (see section above) with migration I need to take steps to get https://dgdocker1.grinnell.edu working so that my colleagues can do some editing ASAP.
+
+In a nutshell...
+
+The new site is not fully functional yet so I need to make a couple of additions, namely:
+
+  - LDAP is not working so you can’t login using your campus credentials.  Julia investigated this before break and determined what the cause is.  It’s a pretty simple fix, but could have nasty side-effects so I don’t dare make the change in production.  Therefore, I’m working to setup a local instance of DG on my desktop so I can experiment there.  To work around this I’ll have to create a new “local” account and password for you to use… no big deal.
+
+  - The theme is not complete.  If you visit https://dgdocker1.grinnell.edu you’ll see that many of our theme elements are still missing.  I’m having to re-build our DG theme from scratch because the old one wasn’t done properly.  Julia and I both worked on the old theme over the years and didn’t make all of our changes “in-sync”, so it’s kind of a cobbled up mess.  I’m fixing that with the new theme now.
+
+  - The ONE form we use for “live editing” of objects is not installed yet.  I’m going to clean away all the old/broken forms we have (which are installed..go figure) and get the ONE form up ASAP.
+
+### DG One Form to Rule Them All
+
+I started this process by visiting https://dgdocker1.grinnell.edu/admin/islandora/xmlform/forms as `System Admin` and deleting, one-by-one, all of the old XML forms.  What a pain!
+
+Next, I need to visit https://dgadmin.grinnell.edu to export the old `ONE From...` so that I can import it into the new system.  Done.  The XML has been saved, along with other important configuration files, in the `IDLE-ld` branch of https://github.com/DigitalGrinnell/RepositoryX/tree/ISLE-ld.
+
+Having imported the form I need to associate it with each content model in the new system.  So, from https://dgdocker1.grinnell.edu/admin/islandora/xmlform/forms/DG%20One%20Form%20to%20Rule%20Them%20All/associations I added the following content models, each with the settings shown below...
+
+  - islandora:sp_large_image_cmodel
+  - islandora:sp_basic_image
+  - islandora:sp_pdf
+
+```
+Metadata Datastream ID: MODS
+Title Field: ['title']
+XSL Transform: sites/default/modules/contrib/islandora_xml_forms/builder/transforms/mods_to_dc_grinnell.xsl
+Self XSL Transform: sites/default/modules/contrib/islandora_xml_forms/builder/self_transforms/cleanup_mods.xsl
+```
+
+**Note:** A potential problem...when defining associations the `Title Field` selection did not seem to "stick".  When I look at completed associations the `Label Field` always reads `None`.
+
+### Creating a New User Account
+
+So I visited https://dgdocker1.grinnell.edu/admin/people/create to try and create a new user account with the following info:
+
+  - Username:  Library Staff
+  - Email:  libstaff@grinnell.edu
+  - Password:  `Don't ask; it's a secret!`
+  - Roles:  Administrator
+
+This did **NOT** appear to work.  The process hangs forever, probably because LDAP is still engaged and not working?
+
+So, I visited https://dgdocker1.grinnell.edu/admin/modules and turned off all of the LDAP modules, in four passes (to account for dependencies). After having done this I looked at https://dgdocker1.grinnell.edu/admin/people and find that `Library Staff` is an active Administrator.  Yay!
+
+Unfortunately, it seems that the new account, as well as any that get edited and saved, have no access to Fedora.  8^(

@@ -1,0 +1,4216 @@
+<?xml version="1.0"?>
+<definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
+  <properties>
+    <root_name>mods</root_name>
+    <schema_uri/>
+    <namespaces default="http://www.loc.gov/mods/v3">
+      <namespace prefix="mods">http://www.loc.gov/mods/v3</namespace>
+      <namespace prefix="xsi">http://www.w3.org/2001/XMLSchema-instance</namespace>
+      <namespace prefix="xlink">http://www.w3.org/1999/xlink</namespace>
+    </namespaces>
+  </properties>
+  <form>
+    <properties>
+      <type>form</type>
+      <access>TRUE</access>
+      <collapsed>FALSE</collapsed>
+      <collapsible>FALSE</collapsible>
+      <description>Form History --------------
+Modified 22-June-2016 - Added "Undergraduate Student Symposium" to the relationTab options.
+Modified 17-June-2016 - Added "Parker Natural History Museum" to the relationTab options.
+Modified 23-June-2015 to add blank roleText entries and default the Org and Event roleText fields to blank.
+Created on 06-May-2015 from "DG Full MODS - Production Ready - April 29, 2015"</description>
+      <disabled>FALSE</disabled>
+      <executes_submit_callback>FALSE</executes_submit_callback>
+      <multiple>FALSE</multiple>
+      <required>FALSE</required>
+      <resizable>FALSE</resizable>
+      <tree>TRUE</tree>
+      <actions>
+        <create>NULL</create>
+        <read>
+          <path>//mods:mods[1]</path>
+          <context>document</context>
+        </read>
+        <update>NULL</update>
+        <delete>NULL</delete>
+      </actions>
+    </properties>
+    <children>
+      <element name="title">
+        <properties>
+          <type>textfield</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Enter the object title. Please use appropriate Title Case.
+&lt;div class="adminNote"&gt;/mods/titleInfo/title -&gt; /dc/title&lt;/div&gt;</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>TRUE</required>
+          <resizable>FALSE</resizable>
+          <title>Title</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:titleInfo[not(@type='alternative')]/mods:title</path>
+              <context>document</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="altTitle">
+        <properties>
+          <type>tags</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Enter alternative titles for the object.
+&lt;div class="adminNote"&gt;/mods/titleInfo[@type="alternative"]/title -&gt; /dc/title[alternative: %value%]&lt;/div&gt;</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Alternative Title(s)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tag</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;titleInfo
+                    type="alternative"&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;</value>
+                </create>
+                <read>
+                  <path>/mods:mods/mods:titleInfo[@type='alternative']/mods:title</path>
+                  <context>document</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="typeOfResrouce">
+        <properties>
+          <type>select</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <default_value>text</default_value>
+          <description>Choose the basic content type from the standard MODS list provided. Descriptions of standard types can be found at &lt;a href='http://www.loc.gov/standards/mods/userguide/typeofresource.html' target='_blank'&gt; http://www.loc.gov/standards/mods/userguide/typeofresource.html&lt;/a&gt;.
+&lt;div class="adminNote"&gt;/mods/typeOfResource -&gt; /dc/type&lt;/div&gt;  </description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <options>
+            <index key=" "> </index>
+            <cartographic>Cartographic</cartographic>
+            <index key="mixed material">Mixed Material</index>
+            <index key="moving image">Moving Image</index>
+            <index key="notated music">Notated Music</index>
+            <index key="software, multimedia">Software or Multimedia</index>
+            <index key="sound recording">Sound Recording (Mixed)</index>
+            <index key="sound recording-musical">Sound Recording - Musical</index>
+            <index key="sound recording-nonmusical">Sound Recording - Non-Musical</index>
+            <index key="still image">Still Image</index>
+            <text>Text (Default)</text>
+          </options>
+          <required>TRUE</required>
+          <resizable>FALSE</resizable>
+          <title>Type</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>typeOfResource</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:typeOfResource</path>
+              <context>document</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="genre">
+        <properties>
+          <type>select</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Select a more specific content type (genre) from the list provided.
+&lt;div class="adminNote"&gt;/mods/genre-&gt; /dc/type[Genre: %value%]&lt;/div&gt;</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <options>
+            <index key=" "> </index>
+            <index key="abstract or summary">Abstract or Summary</index>
+            <advertisement>Advertisement</advertisement>
+            <album>Album</album>
+            <architecture>Architecture</architecture>
+            <index key="art original">Art Original</index>
+            <index key="art reproduction">Art Reproduction</index>
+            <article>Article</article>
+            <index key="article, pre-print">Article, Pre-print</index>
+            <index key="article, post-print">Article, Post-Print</index>
+            <index key="article, published version">Article, Published Version</index>
+            <index key="assessment material">Assessment Material</index>
+            <atlas>Atlas</atlas>
+            <autobiography>Autobiography</autobiography>
+            <index key="baseball card">Baseball Card</index>
+            <bibliography>Bibliography</bibliography>
+            <biography>Biography</biography>
+            <index key="blank form">Blank Form</index>
+            <index key="blueprint or plan">Blueprint or Plan</index>
+            <book>Book</book>
+            <index key="book chapter">Book Chapter</index>
+            <broadside>Broadside</broadside>
+            <calendar>Calendar</calendar>
+            <cartoon>Cartoon</cartoon>
+            <catalog>Catalog</catalog>
+            <chart>Chart</chart>
+            <cityscape>Cityscape</cityscape>
+            <clipping>Clipping</clipping>
+            <coin>Coin</coin>
+            <index key="comic or graphic novel">Comic Or Graphic Novel</index>
+            <index key="comic strip">Comic Strip</index>
+            <index key="conference publication">Conference Publication</index>
+            <correspondence>Correspondence</correspondence>
+            <database>Database</database>
+            <diary>Diary</diary>
+            <dictionary>Dictionary</dictionary>
+            <diorama>Diorama</diorama>
+            <directory>Directory</directory>
+            <discography>Discography</discography>
+            <drama>Drama</drama>
+            <drawing>Drawing</drawing>
+            <editorial>Editorial</editorial>
+            <encyclopedia>Encyclopedia</encyclopedia>
+            <ephemera>Ephemera</ephemera>
+            <essay>Essay</essay>
+            <ethnography>Ethnography</ethnography>
+            <festschrift>Festschrift</festschrift>
+            <fiction>Fiction</fiction>
+            <fieldnotes>Fieldnotes</fieldnotes>
+            <filmography>Filmography</filmography>
+            <filmstrip>Filmstrip</filmstrip>
+            <index key="finding aid">Finding Aid</index>
+            <index key="flash card">Flash Card</index>
+            <folktale>Folktale</folktale>
+            <font>Font</font>
+            <game>Game</game>
+            <index key="government publication">Government Publication</index>
+            <graphic>Graphic</graphic>
+            <globe>Globe</globe>
+            <handbook>Handbook</handbook>
+            <history>History</history>
+            <hymnal>Hymnal</hymnal>
+            <index key="humor, satire">Humor, Satire</index>
+            <illustration>Illustration</illustration>
+            <index>Index</index>
+            <index key="institutional record">Institutional Record</index>
+            <instruction>Instruction</instruction>
+            <index key="instructional material">Instructional Material</index>
+            <interview>Interview</interview>
+            <issue>Issue</issue>
+            <journal>Journal</journal>
+            <kit>Kit</kit>
+            <landscape>Landscape</landscape>
+            <index key="language instruction">Language Instruction</index>
+            <index key="law report or digest">Law Report Or Digest</index>
+            <leaflet>Leaflet</leaflet>
+            <index key="legal article">Legal Article</index>
+            <index key="legal case and case notes">Legal Case And Case Notes</index>
+            <legislation>Legislation</legislation>
+            <letter>Letter</letter>
+            <index key="loose-leaf">Loose-Leaf</index>
+            <manuscript>Manuscript</manuscript>
+            <map>Map</map>
+            <memoir>Memoir</memoir>
+            <index key="microscope slide">Microscope Slide</index>
+            <index key="miscellaneous document">Miscellaneous Document</index>
+            <index key="mixed media">Mixed Media</index>
+            <model>Model</model>
+            <index key="motion picture">Motion Picture</index>
+            <index key="multivolume monograph">Multivolume Monograph</index>
+            <music>Music</music>
+            <narrative>Narrative</narrative>
+            <newspaper>Newspaper</newspaper>
+            <novel>Novel</novel>
+            <index key="numeric data">Numeric Data</index>
+            <offprint>Offprint</offprint>
+            <index key="online system or service">Online System Or Service</index>
+            <painting>Painting</painting>
+            <pamphlet>Pamphlet</pamphlet>
+            <patent>Patent</patent>
+            <periodical>Periodical</periodical>
+            <petition>Petition</petition>
+            <photograph>Photograph</photograph>
+            <index key="physical object">Physical Object</index>
+            <picture>Picture</picture>
+            <podcast>Podcast</podcast>
+            <poetry>Poetry</poetry>
+            <portrait>Portrait</portrait>
+            <postcard>Postcard</postcard>
+            <poster>Poster</poster>
+            <presentation>Presentation</presentation>
+            <print>Print</print>
+            <program>Program</program>
+            <index key="programmed text">Programmed Text</index>
+            <realia>Realia</realia>
+            <index key="recording log">Recording Log</index>
+            <rehearsal>Rehearsal</rehearsal>
+            <index key="remote sensing image">Remote Sensing Image</index>
+            <report>Report</report>
+            <index key="research paper">Research Paper</index>
+            <review>Review</review>
+            <score>Score</score>
+            <script>Script</script>
+            <sculpture>Sculpture</sculpture>
+            <series>Series</series>
+            <index key="sheet music">Sheet Music</index>
+            <index key="short story">Short Story</index>
+            <slide>Slide</slide>
+            <specimen>Specimen</specimen>
+            <speech>Speech</speech>
+            <index key="standard or specification">Standard Or Specification</index>
+            <statistics>Statistics</statistics>
+            <index key="survey of literature">Survey Of Literature</index>
+            <index key="technical drawing">Technical Drawing</index>
+            <index key="technical report">Technical Report</index>
+            <thesis>Thesis</thesis>
+            <timetable>Timetable</timetable>
+            <toy>Toy</toy>
+            <transcription>Transcription</transcription>
+            <transparency>Transparency</transparency>
+            <treaty>Treaty</treaty>
+            <videorecording>Videorecording</videorecording>
+            <index key="web site">Web Site</index>
+            <index key="working paper">Working Paper</index>
+            <yearbook>Yearbook</yearbook>
+          </options>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Genre</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>genre</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:genre</path>
+              <context>document</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="abstract">
+        <properties>
+          <type>textarea</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Please use this space to write a concise abstract of the work.
+&lt;div class="adminNote"&gt;/mods/abstract -&gt; /dc/description&lt;/div&gt;</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Abstract</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>abstract</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:abstract</path>
+              <context>document</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="tableOfContents">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Table of Contents</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="toc">
+            <properties>
+              <type>textarea</type>
+              <access>TRUE</access>
+              <collapsed>TRUE</collapsed>
+              <collapsible>TRUE</collapsible>
+              <description>The resource's Table of Contents.
+&lt;div class="adminNote"&gt;/mods/tableOfContents -&gt; /dc/description&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Table of Contents</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>tableOfContents</value>
+                </create>
+                <read>
+                  <path>/mods:mods/mods:tableOfContents</path>
+                  <context>document</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="nameTabPersonalFieldset">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="nameTabPersonal">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Personal/Family Author(s) and Contributor(s)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Use this fieldset to enter &lt;b&gt;Personal&lt;/b&gt; and/or &lt;b&gt;Family&lt;/b&gt; names ONLY.  Other fieldsets are provided for Corporate and Event names below.&lt;div class="adminNote"&gt;/mods/name[@type="personal" or @type="family"]/role/roleTerm[text()='%role%'] --&gt; /dc/contributor[%value%
+                    (%role%)]&lt;br /&gt;If %role% is 'Author' (creator) then --&gt;
+                    /dc/creator[%value%]&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>name</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:name[@type="personal" or @type="family"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="nameType">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>TRUE</collapsible>
+                      <default_value>personal</default_value>
+                      <description>Select from the provided list the type of name to be recorded.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <personal>Personal (default)</personal>
+                        <family>Family</family>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Type</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>type</value>
+                        </create>
+                        <read>
+                          <path>@type</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="roleText">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <default_value>creator</default_value>
+                      <description>Select the role of this contributor from the list provided. Note that selecting the default of 'Author/Artist' will distinguish the contributor as a 'creator' of the resource.
+Contact the &lt;a href="mailto:digital@grinnell.edu?subject=MODS nameTabPersonal roleText Selections"&gt;System Admin&lt;/a&gt; for
+                    assistance adding new roles to the selection list. </description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <index key="">NONE</index>
+                        <creator>Author/Artist</creator>
+                        <advisor>Advisor</advisor>
+                        <editor>Editor</editor>
+                        <illustrator>Illustrator</illustrator>
+                        <interviewee>Interviewee</interviewee>
+                        <interviewer>Interviewer</interviewer>
+                        <photographer>Photographer</photographer>
+                        <publisher>Publisher</publisher>
+                        <reviewer>Reviewer</reviewer>
+                        <sponsor>Sponsor</sponsor>
+                        <transcriber>Transcriber</transcriber>
+                        <performer>Performer</performer>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Role</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;role&gt;&lt;roleTerm
+                        type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
+                        </create>
+                        <read>
+                          <path>mods:role/mods:roleTerm[@type='text']</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="displayLabelNamePersonal">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <default_value>Author</default_value>
+                      <description>Enter an optional displayLabel here to override the "Role" label in the MODS metadata display.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name displayLabel (Optional)</title>
+                      <tree>FALSE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>displayLabel</value>
+                        </create>
+                        <read>
+                          <path>@displayLabel</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="namePart">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <autocomplete_path>islandora/entities/autocomplete/Person-dc.title</autocomplete_path>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter the full, authorized personal or family name of this contributor by
+                    typing a few characters from the name and selecting from the list provided. If a suitable
+                    match is not available enter the full text.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>namePart</value>
+                        </create>
+                        <read>
+                          <path>mods:namePart[not(@type)]</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="nameTabOrganizationFieldset">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Corporate / Organization Contributor(s)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="nameTabOrganization">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>TRUE</collapsed>
+              <collapsible>TRUE</collapsible>
+              <description>Use this fieldset to enter Corporate or Organization names ONLY.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Organization Author(s) and Contributor(s)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>TRUE</collapsible>
+                  <description> &lt;div class='adminNote'&gt;
+                    /mods/name[@type="corporate"]/role/roleTerm[text()='%role%'] --&gt; /dc/contributor[%value%
+                    (%role%)]&lt;/div&gt; </description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>name</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:name[@type="corporate"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="nameType">
+                    <properties>
+                      <type>hidden</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>TRUE</collapsible>
+                      <default_value>corporate</default_value>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Type</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>type</value>
+                        </create>
+                        <read>
+                          <path>@type="corporate"</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="roleText">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>TRUE</collapsible>
+                      <description>Select the role of this contributor from the list provided.
+                    Contact the &lt;a href="mailto:digital@grinnell.edu?subject=MODS nameTabOrganization roleText Selections"&gt;System Admin&lt;/a&gt; for
+                    assistance adding new roles to the selection list.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <index key="">NONE</index>
+                        <creator>Author</creator>
+                        <advisor>Advisor</advisor>
+                        <editor>Editor</editor>
+                        <illustrator>Illustrator</illustrator>
+                        <photographer>Photographer</photographer>
+                        <sponsor>Sponsor</sponsor>
+                        <index key="supporting host">Supporting Host</index>
+                        <performer>Performer</performer>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Role</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;role&gt;&lt;roleTerm
+                        type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
+                        </create>
+                        <read>
+                          <path>mods:role/mods:roleTerm[@type='text']</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="displayLabelNameOrganization">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter an optional displayLabel here to override the "Role" label in the MODS metadata display.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name displayLabel (Optional)</title>
+                      <tree>FALSE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>displayLabel</value>
+                        </create>
+                        <read>
+                          <path>@displayLabel</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="namePart">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <autocomplete_path>islandora/entities/autocomplete/Organization-dc.title</autocomplete_path>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>TRUE</collapsible>
+                      <description>Enter the full, authorized &lt;b&gt;organization&lt;/b&gt; name of this contributor by
+                    typing a few characters from the name and selecting from the list provided. If a suitable
+                    match is not available please enter the full text.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>namePart</value>
+                        </create>
+                        <read>
+                          <path>mods:namePart[not(@type)]</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="nameTabEventFieldset">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Conference / Event Contributor(s)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="nameTabEvent">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use this fieldset to enter Event names ONLY.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Event Author(s) and Contributor(s)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description> &lt;div class='adminNote'&gt;
+                    /mods/name[@type="conference"]/[role/roleTerm[text()='%role%'] --&gt; /dc/contributor[%value%
+                    (%role%)]&lt;/div&gt; </description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>name</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:name[@type="conference"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="nameType">
+                    <properties>
+                      <type>hidden</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <default_value>conference</default_value>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Type</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>type</value>
+                        </create>
+                        <read>
+                          <path>@type="conference"</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="roleText">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Select the role of this contributor from the list provided.
+                    Contact the &lt;a href="mailto:digital@grinnell.edu?subject=MODS nameTabEvent roleText Selections"&gt;System Admin&lt;/a&gt; for
+                    assistance adding new roles to the selection list. </description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <index key="">NONE</index>
+                        <creator>Author</creator>
+                        <advisor>Advisor</advisor>
+                        <editor>Editor</editor>
+                        <illustrator>Illustrator</illustrator>
+                        <photographer>Photographer</photographer>
+                        <sponsor>Sponsor</sponsor>
+                        <index key="supporting host">Supporting Host</index>
+                        <performer>Performer</performer>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Role</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;role&gt;&lt;roleTerm
+                        type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
+                        </create>
+                        <read>
+                          <path>mods:role/mods:roleTerm[@type='text']</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="displayLabelNameEvent">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter an optional displayLabel here to override the "Role" label in the MODS metadata display.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name displayLabel (Optional)</title>
+                      <tree>FALSE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>displayLabel</value>
+                        </create>
+                        <read>
+                          <path>@displayLabel</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="namePart">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <autocomplete_path>islandora/entities/autocomplete/Event-dc.title</autocomplete_path>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter the full, authorized &lt;b&gt;conference&lt;/b&gt; or &lt;b&gt;event&lt;/b&gt; name of this contributor by
+                    typing a few characters from the name and selecting from the list provided. If a suitable
+                    match is not available enter the full text.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Name</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>namePart</value>
+                        </create>
+                        <read>
+                          <path>mods:namePart[not(@type)]</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="publicNotes">
+        <properties>
+          <type>tabs</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Use the tabs above to enter PUBLIC notes that may be visible to patrons
+                and may be harvested from the repository. Additional notes can be added by opening
+                new tabs. Refer to &lt;a href='http://www.loc.gov/standards/mods/mods-notes.html#source' target='_blank'&gt;http://www.loc.gov/standards/mods/mods-notes.html#source&lt;/a&gt; and &lt;a href='http://oclc.org/bibformats/en/5xx.html' target='_blank'&gt;http://oclc.org/bibformats/en/5xx.html&lt;/a&gt; for guidance.&lt;div class="adminNote"&gt;/mods/note[@type='%type%'] --&gt; /dc:note.&lt;/div&gt; </description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Public Notes</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>NULL</create>
+            <read>
+              <path>/mods:mods</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tabpanel</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>note</value>
+                </create>
+                <read>
+                  <path>mods:note</path>
+                  <context>parent</context>
+                </read>
+                <update>NULL</update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="noteType">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <attributes>
+                    <index key=""/>
+                  </attributes>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Select the type of note to be recorded. Types which are specific
+                        to Grinnell are listed first and labeled in UPPERCASE. Standard MODS types
+                        are listed below the Grinnell values and are in lowercase.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=" "> </index>
+                    <credits>CREDITS</credits>
+                    <description>DESCRIPTION (Other than Abstract)</description>
+                    <note>GENERAL NOTE</note>
+                    <index key="provenance history">PROVENANCE HISTORY</index>
+                    <signature>SIGNATURE</signature>
+                    <index key="sponsor/funding agency">SPONSOR / FUNDING AGENCY</index>
+                    <watermark>WATERMARK</watermark>
+                    <index key="accrual method">accrual method</index>
+                    <index key="accrual policy">accrual policy</index>
+                    <acquisition>acquisition</acquisition>
+                    <action>action</action>
+                    <index key="additional physical form">additional physical form</index>
+                    <admin>admin</admin>
+                    <index key="bibliographic history">bibliographic history</index>
+                    <bibliography>bibliography</bibliography>
+                    <index key="biographical/historical">biographical/historical</index>
+                    <index key="citation/reference">citation/reference</index>
+                    <index key="conservation history">conservation history</index>
+                    <content>content</content>
+                    <index key="creation/production credits">creation/production credits</index>
+                    <date>date</date>
+                    <exhibitions>exhibitions</exhibitions>
+                    <funding>funding</funding>
+                    <handwritten>handwritten</handwritten>
+                    <language>language</language>
+                    <numbering>numbering</numbering>
+                    <index key="date/sequential designation">date/sequential designation</index>
+                    <index key="original location">original location</index>
+                    <index key="original version">original version</index>
+                    <ownership>ownership</ownership>
+                    <performers>performers</performers>
+                    <index key="preferred citation">preferred citation</index>
+                    <publications>publications</publications>
+                    <reproduction>reproduction</reproduction>
+                    <restriction>restriction</restriction>
+                    <index key="source characteristics">source characteristics</index>
+                    <index key="source dimensions">source dimensions</index>
+                    <index key="source identifier">source identifier</index>
+                    <index key="source note">source note</index>
+                    <index key="source type">source type</index>
+                    <index key="statement of responsibility">statement of responsibility</index>
+                    <index key="subject completeness">subject completeness</index>
+                    <index key="system details">system details</index>
+                    <thesis>thesis</thesis>
+                    <venue>venue</venue>
+                    <index key="version identification">version identification</index>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Type</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>type</value>
+                    </create>
+                    <read>
+                      <path>@type</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="displayLabelNote">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter an optional displayLabel here to override the note "Type" label in the MODS metadata display.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Note displayLabel (Optional)</title>
+                  <tree>FALSE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>displayLabel</value>
+                    </create>
+                    <read>
+                      <path>@displayLabel</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>@displayLabel</path>
+                      <context>parent</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="noteText">
+                <properties>
+                  <type>textarea</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Note</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>NULL</create>
+                    <read>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="privateNotes">
+        <properties>
+          <type>tabs</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>Use the tabs above to enter PRIVATE (admin) notes that will NOT be
+            visible to patrons and cannot be harvested from the repository. Additional notes can
+            be added by opening new tabs.
+&lt;div class="adminNote"&gt;/mods/relatedItem[@type='admin']/note[@type='%type%'] --&gt; NO translation to DC.&lt;/div&gt; </description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Private (Admin) Notes</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;relatedItem type="admin" /&gt;</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:relatedItem[@type="admin"]</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tabpanel</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>note</value>
+                </create>
+                <read>
+                  <path>mods:note</path>
+                  <context>parent</context>
+                </read>
+                <update>NULL</update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="noteType">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Select the type of note to be recorded. Types which are specific
+                    to Grinnell are listed first and labeled in UPPERCASE. Standard MODS types
+                    are listed below the Grinnell values and are in lowercase.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=" "> </index>
+                    <accessioned>ACCESSIONED DATE</accessioned>
+                    <index key="accrual method">ACCRUAL METHOD</index>
+                    <comments>COMMENTS</comments>
+                    <inventory>INVENTORY DATE</inventory>
+                    <location>LOCATION</location>
+                    <provenance>PROVENANCE</provenance>
+                    <status>STATUS</status>
+                    <value>VALUE</value>
+                    <index key="accrual policy">accrual policy</index>
+                    <acquisition>acquisition</acquisition>
+                    <action>action</action>
+                    <index key="additional physical form">additional physical form</index>
+                    <admin>admin</admin>
+                    <index key="bibliographic history">bibliographic history</index>
+                    <bibliography>bibliography</bibliography>
+                    <index key="biographical/historical">biographical/historical</index>
+                    <index key="citation/reference">citation/reference</index>
+                    <index key="conservation history">conservation history</index>
+                    <content>content</content>
+                    <index key="creation/production credits">creation/production credits</index>
+                    <date>date</date>
+                    <exhibitions>exhibitions</exhibitions>
+                    <funding>funding</funding>
+                    <handwritten>handwritten</handwritten>
+                    <language>language</language>
+                    <numbering>numbering</numbering>
+                    <index key="date/sequential designation">date/sequential designation</index>
+                    <index key="original location">original location</index>
+                    <index key="original version">original version</index>
+                    <ownership>ownership</ownership>
+                    <performers>performers</performers>
+                    <index key="preferred citation">preferred citation</index>
+                    <publications>publications</publications>
+                    <reproduction>reproduction</reproduction>
+                    <restriction>restriction</restriction>
+                    <index key="source characteristics">source characteristics</index>
+                    <index key="source dimensions">source dimensions</index>
+                    <index key="source identifier">source identifier</index>
+                    <index key="source note">source note</index>
+                    <index key="source type">source type</index>
+                    <index key="statement of responsibility">statement of responsibility</index>
+                    <index key="subject completeness">subject completeness</index>
+                    <index key="system details">system details</index>
+                    <thesis>thesis</thesis>
+                    <venue>venue</venue>
+                    <index key="version identification">version identification</index>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Type</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>type</value>
+                    </create>
+                    <read>
+                      <path>@type</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="noteText">
+                <properties>
+                  <type>textarea</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Comment</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>NULL</create>
+                    <read>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="identifiersFieldset">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Identifiers</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="identifierTabs">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use the tabs above to enter IDENTIFIERS. Additional identifiers can be added
+            by opening new tabs.
+&lt;div class="adminNote"&gt;/mods/identifier[@type='%type%'].&lt;/div&gt; </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Identifiers</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>NULL</create>
+                <read>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                </read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>identifier</value>
+                    </create>
+                    <read>
+                      <path>mods:identifier</path>
+                      <context>parent</context>
+                    </read>
+                    <update>NULL</update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="identifierType">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Select the type of identifier to be recorded. All standard MODS
+                    identifier types are listed with the most popular types near the top of the list
+                    and Grinnell-specific values near the bottom. The standard list can be found at
+                    &lt;a href="http://www.loc.gov/standards/sourcelist/standard-identifier.html"
+                    target="_blank"&gt;http://www.loc.gov/standards/sourcelist/standard-identifier.html&lt;/a&gt;.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <index key=" "> </index>
+                        <doi>Digital Object Identifier (DOI)</doi>
+                        <hdl>Handle</hdl>
+                        <uri>Uniform Resource Identifier (URI)</uri>
+                        <ansi>American National Standards Institute (ANSI) and National Information
+                      Standards Organisation (NISO)</ansi>
+                        <danacode>Danacode (Bnei Brak, Israel: D.A.N.A. Systems)</danacode>
+                        <ean>International Article Number (IAN)</ean>
+                        <index key="gtin-14">Global Trade Identification Number 14 (EAN/UCC-128 or
+                      ITF-14)</index>
+                        <isan>International Standard Audiovisual Number (ISAN)</isan>
+                        <isbn>International Standard Book Number (ISBN)</isbn>
+                        <ismn>International Standard Music Number (ISMN)</ismn>
+                        <isni>International Standard Name Identifier (ISNI)</isni>
+                        <iso>International Organization for Standardization number (ISO)</iso>
+                        <isrc>International Standard Recording Code (ISRC)</isrc>
+                        <issn>International Standard Serial Number (ISSN)</issn>
+                        <index key="issn-l">Linking International Standard Serial Number</index>
+                        <index key="issue-number">Sound recording issue number</index>
+                        <istc>International Standard Text Code (ISTC)</istc>
+                        <iswc>International Standard Musical Work Code (ISWC)</iswc>
+                        <itar>ITAR (Importtjeneste og autoritetsregistre) External Link</itar>
+                        <lccn>Library of Congress Control Number (LCCN)</lccn>
+                        <local>Locally defined identifier</local>
+                        <index key="matrix-number">Sound recording matrix number</index>
+                        <index key="music-plate">Publisher's music plate number</index>
+                        <index key="music-publisher">Publisher-assigned music number</index>
+                        <natgazfid>U.S. National Gazetteer Feature Name Identifier</natgazfid>
+                        <nipo>N&#xFA;mero de Identificaci&#xF3;n de las Publicaciones Oficiales
+                      (NIPO)</nipo>
+                        <orcid>Open Researcher and Contributor IDentifier (ORCID)</orcid>
+                        <sici>Serial Item and Contribution Identifier (SICI)</sici>
+                        <index key="stock-number">Publisher, distributor, or vendor stock number</index>
+                        <strn>Standard Technical Report Number (STRN)</strn>
+                        <upc>Universal Product Code (UPC)</upc>
+                        <urn>Uniform Resource Name (URN)</urn>
+                        <viaf>Virtual International Authority File number (VIAF)</viaf>
+                        <index key="videorecording-identifier">Publisher-assigned videorecording
+                      number</index>
+                        <gov>Gov</gov>
+                        <grant>Grant</grant>
+                        <other>Other</other>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Type</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>type</value>
+                        </create>
+                        <read>
+                          <path>@type</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="identifierText">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Identifier Text</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>NULL</create>
+                        <read>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="displayLabelID">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter an optional displayLabel here to override the default identifierType label in the MODS metadata display.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Identifier displayLabel</title>
+                      <tree>FALSE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>displayLabel</value>
+                        </create>
+                        <read>
+                          <path>@displayLabel</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>@displayLabel</path>
+                          <context>parent</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="languageFieldset">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Language (English is the Default)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="language">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>&lt;div class="adminNote"&gt;/mods/language/languageTerm[@type='code'] and [@type='text'].&lt;/div&gt; </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Language</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>NULL</create>
+                <read>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                </read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter a three letter iso639-2b language code from &lt;a
+                href="http://www.loc.gov/standards/iso639-2/php/code_list.php"
+                target="_blank"&gt;http://www.loc.gov/standards/iso639-2/php/code_list.php&lt;/a&gt; as well as its equivalent language name.  Additional language references can be added by opening
+                new tabs.
+
+              </description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>parent</context>
+                      <schema>self::node()</schema>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>language</value>
+                    </create>
+                    <read>
+                      <path>mods:language</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="language_iso">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <default_value>eng</default_value>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Language Code</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;languageTerm type="code"&gt;%value%&lt;/languageTerm&gt;</value>
+                        </create>
+                        <read>
+                          <path>mods:languageTerm[@type="code"]</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="language_text">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <autocomplete_path>iso_639_2/autocomplete</autocomplete_path>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <default_value>English</default_value>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Language Name</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;languageTerm type="text"&gt;%value%&lt;/languageTerm&gt;</value>
+                        </create>
+                        <read>
+                          <path>mods:languageTerm[@type="text"]</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="originInfo">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Origin Info</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>originInfo</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:originInfo</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="dates">
+            <properties>
+              <type>fieldset</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Attention!  Please note that all fields of type 'date' or any that contain 'date' in the header, even fields like note[@type='date'],  MUST CONTAIN ONLY DISCRETE and VALID DATE STRINGS.  A format like YYYY or YYYY-MM or YYYY-MM-DD must be strictly specified.  Invalid date text will NOT properly transform to Solr and may cause significant performance degredation of Digital Grinnell.    Please use a field like note[@type='creation/production credits'] with an optional @displayLabel attribute to hold date values expressed in other, invalid forms.  </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Dates</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="accessioned">
+                <properties>
+                  <type>hidden</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>&lt;div class="adminNote"&gt;/mods/dataCaptured.&lt;/div&gt;</description>
+                  <disabled>TRUE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Accessioned</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>dateCaptured</value>
+                    </create>
+                    <read>
+                      <path>mods:dateCaptured</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="submitted">
+                <properties>
+                  <type>hidden</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>&lt;div class="adminNote"&gt;/mods/dateValid.&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>dateValid</value>
+                    </create>
+                    <read>
+                      <path>mods:dateValid</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="available">
+                <properties>
+                  <type>hidden</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;dateOther type="available"&gt;%value%&lt;/dateOther&gt;</value>
+                    </create>
+                    <read>
+                      <path>mods:dateOther[@type='available']</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="created">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter the Index (creation) year/date for this work ONLY in the form:  YYYY.  Do NOT include a month, year or any other text here!  This is required for faceted search to work properly.  If unknown you may leave this field blank.  Displays as 'Index Date' unless a displayLabel attribute is specified.
+&lt;div class="adminNote"&gt;/mods/originInfo/dateCreated --&gt; /dc/date&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Created</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>dateCreated</value>
+                    </create>
+                    <read>
+                      <path>mods:dateCreated</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="other">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter any 'other' significant date. Like all date fields, this entry MUST be entered in a valid date format, like YYYY-MM-DD.
+ &lt;div class="adminNote"&gt;/mods/originInfo/dateOther&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Other</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>dateOther</value>
+                    </create>
+                    <read>
+                      <path>mods:dateOther</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="copyright">
+                <properties>
+                  <type>tags</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter the copyright dates. Note that each field should contain a
+                    single date. Multiple copyrights should be entered by adding additional
+                    tabs.&lt;div class="adminNote"&gt;/mods/copyrightDate&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Copyright Date</title>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="0">
+                    <properties>
+                      <type>tag</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter copyright date.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>copyrightDate</value>
+                        </create>
+                        <read>
+                          <path>mods:copyrightDate</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+              <element name="issued">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter the date of issue or publication.  Like all date fields, this entry MUST be entered in a valid date format, like YYYY-MM-DD.
+ &lt;div class="adminNote"&gt;/mods/dateIssued --&gt; /dc/date&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Issued</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>dateIssued</value>
+                    </create>
+                    <read>
+                      <path>mods:dateIssued</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="edition">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Enter edition numbers or dates. Note that each field should contain a
+                single number or date. Multiple editions should be entered by adding additional
+                tabs.   &lt;div class='adminNote'&gt;/mods/originInfo/edition --&gt;
+                dc?&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Edition(s)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Edition</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods/mods:originInfo</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>edition</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:originInfo/mods:edition</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="publisher">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>Grinnell College</default_value>
+              <description>Grinnell College is the default publisher. Multiple publishers should be entered by adding additional
+                tabs.&lt;div class='adminNote'&gt;/mods/originInfo/publisher --&gt;
+                dc?&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Publisher</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <default_value>Grinnell College</default_value>
+                  <description>Grinnell College is the default publisher. Change or add as
+                    needed.&lt;div class="adminNote"&gt;/mods/publisher&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods/mods:originInfo</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>publisher</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:originInfo/mods:publisher</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="citations">
+            <properties>
+              <type>tags</type>
+              <access>FALSE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Standard style is Chicago (16th Edition); use discipline specific style if desired</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Citations</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>TRUE</resizable>
+                  <title>Citations</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;relatedItem type="otherVersion"&gt;%value%&lt;/relatedItem&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:relatedItem[@type="otherVersion"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="physical_object_description">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>Describes the physical object.</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Physical Object Description</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>physicalDescription</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:physicalDescription[@displayLabel]</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="displayLabelPhysical">
+            <properties>
+              <type>hidden</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>Physical</default_value>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>attribute</type>
+                  <prefix>NULL</prefix>
+                  <value>displayLabel</value>
+                </create>
+                <read>NULL</read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="extent">
+            <properties>
+              <type>textfield</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Enter the extent (dimension, number of pages, etc.) of the physical
+                resource. &lt;div
+                class="adminNote"&gt;/mods/physicalDescription[@displayLabel="Physical"]/extent
+                -&gt; /dc/format[Physical Extent = %value%]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Extent</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>extent</value>
+                </create>
+                <read>
+                  <path>mods:extent</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="displayLabelPhysicaExtentl">
+            <properties>
+              <type>hidden</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>Physical Extent</default_value>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods/mods:physicalDescription[@displayLabel]/mods:extent</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>attribute</type>
+                  <prefix>NULL</prefix>
+                  <value>displayLabel</value>
+                </create>
+                <read>NULL</read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="form">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>A designation of the physical resource medium. Some examples include:
+            Painting, Oil paint on canvas, Wood engraving, Etching, Lithograph.
+&lt;div
+                class="adminNote"&gt;/mods/physicalDescription[@displayLabel="Physical"]/form
+                -&gt; /dc/format[Physical Form = %value%]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Form</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Form</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>form</value>
+                    </create>
+                    <read>
+                      <path>mods:form[not(@*)]</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="digital_object_description">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>Describes the digital object.</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Digital Object Description</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>physicalDescription</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:physicalDescription[not(@displayLabel)]</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="extent">
+            <properties>
+              <type>textfield</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Enter the extent (number of pages, file size, recording length, etc.) of
+                the digital resource. &lt;div
+                class="adminNote"&gt;/mods/physicalDescription[not(@displayLabel)]/extent -&gt;
+                /dc/format[Extent = %value%]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Extent</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>extent</value>
+                </create>
+                <read>
+                  <path>mods:extent</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="displayLabelDigitalExtent">
+            <properties>
+              <type>hidden</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>Digital Extent</default_value>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods/mods:physicalDescription[not(@*)]/mods:extent</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>attribute</type>
+                  <prefix>NULL</prefix>
+                  <value>displayLabel</value>
+                </create>
+                <read>NULL</read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="digital_origin">
+            <properties>
+              <type>select</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Select the origin of the digital resource from the list provided. &lt;div
+                class='adminNote'&gt;/mods/physicalDescription/digitalOrigin --&gt;
+                /dc/format&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <options>
+                <index key="">Not Specified</index>
+                <index key="born digital">Born Digital</index>
+                <index key="reformated digital">Reformatted Digital</index>
+                <index key="digitized microfilm">Digitized Microfilm</index>
+                <index key="digitized other analog">Digitized Other Analog</index>
+              </options>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Digital Origin</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>digitalOrigin</value>
+                </create>
+                <read>
+                  <path>mods:digitalOrigin</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="mimetype">
+            <properties>
+              <type>select</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>pdf</default_value>
+              <description>Choose the MIME type for the file. To suggest additions to this list
+                contact the &lt;a href="mailto:digital@grinnell.edu"&gt;System Admin&lt;/a&gt;.
+                &lt;div class='adminNote'&gt;/mods/physicalDescription/internetMediaType --&gt;
+                /dc/format&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <options>
+                <index key=""/>
+                <index key="application/pdf">PDF</index>
+                <index key="audio/mpeg">MP3 (Audio)</index>
+                <index key="audio/vnd.wave">WAV (Audio)</index>
+                <index key="image/tiff">TIFF (Image)</index>
+                <index key="image/jpeg">JPEG (Image)</index>
+                <index key="video/mp4">MP4 (Video)</index>
+                <index key="text/html">HTML Text</index>
+                <index key="text/plain">Plain Text</index>
+                <index key="text/xml">XML Text</index>
+              </options>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>MIME Type</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>internetMediaType</value>
+                </create>
+                <read>
+                  <path>mods:internetMediaType</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="coverage">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>@TODO!</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Coverage (Lat/Long and Temporal)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="spatial">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Add note:  You may use http://www.latlong.net/  or another source.  You may use DD form: 41.40338, 2.17403   DMS: 41&#xB0;24'12.2"N 2&#xB0;10'26.5"E , or DMM 41 24.2028, 2 10.4418  format</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Spatial (Latitude / Longitude)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>&lt;div class="adminNote"&gt;/mods/subject/cartographics/coordinates&lt;/div&gt;</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject&gt;&lt;cartographics&gt;&lt;coordinates&gt;%value%&lt;/coordinates&gt;&lt;/cartographics&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject/mods:cartographics/mods:coordinates</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="temporal">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Temporal</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="date">
+                    <properties>
+                      <type>hidden</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Date or Historical Period</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>/mods:mods</path>
+                          <context>document</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;subject&gt;&lt;temporal&gt;%value%&lt;/temporal&gt;&lt;/subject&gt;</value>
+                        </create>
+                        <read>
+                          <path>/mods:mods/mods:subject/mods:temporal[not(@point)]</path>
+                          <context>document</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="min">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Use for single or beginning date/time. &lt;div class="adminNote"&gt;/mods/subject/temporal[@point="start"]&lt;/div&gt;</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>From</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>/mods:mods</path>
+                          <context>document</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;subject&gt;&lt;temporal
+                            point="start"&gt;%value%&lt;/temporal&gt;&lt;/subject&gt;</value>
+                        </create>
+                        <read>
+                          <path>/mods:mods/mods:subject/mods:temporal[@point="start"]</path>
+                          <context>document</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="max">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Use for end date/time. &lt;div class="adminNote"&gt;/mods/subject/temporal[@point="end"]&lt;/div&gt;</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>To</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>/mods:mods</path>
+                          <context>document</context>
+                          <schema/>
+                          <type>xml</type>
+                          <prefix>NULL</prefix>
+                          <value>&lt;subject&gt;&lt;temporal
+                            point="end"&gt;%value%&lt;/temporal&gt;&lt;/subject&gt;</value>
+                        </create>
+                        <read>
+                          <path>/mods:mods/mods:subject/mods:temporal[@point="end"]</path>
+                          <context>document</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="classification">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>Definition: a designation applied to a resource that indicates the subject by applying a formal system of coding and organizing resources according to subject areas. &lt;p/&gt;
+
+            Application: "classification" contains the classification number of a resource. It may also include the full call number if desired. This is equivalent to MARC fields 050-08X, subfields $a and $b.</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Classification</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="lcc">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>&lt;div
+                class="adminNote"&gt;/mods/classification[@authority="lcc"]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Library of Congress</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This field produces a MODS element of the form: /mods/classification[@authority="lcc"].</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Classification (LCC)</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;classification
+                        authority="lcc"&gt;%value%&lt;/classification&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:classification[@authority="lcc"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="local">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use this field for local classification using a mix of letters and
+                numbers.
+&lt;div class="adminNote"&gt;/mods/classification[@authority="local" and @type="mixed"]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Mixed Local Call Number</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This field produces a MODS element of the form: /mods/classification[@authority="local" and @type="mixed"].</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Classification (DDC)</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;classification authority="local" type="mixed"&gt;%value%&lt;/classification&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:classification[@authority="local" and @type="mixed"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="numerical">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use this field for local classification using numbers ONLY.&lt;div class="adminNote"&gt;/mods/classification[@authority="local" and @type="numeric"]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Numeric Local Call Number</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Classification </title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;classification authority="local" type="numeric"&gt;%value%&lt;/classification&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:classification[@authority="local" and @type="numeric"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="alphabetical">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use this field for local classification using letters ONLY.&lt;div class="adminNote"&gt;/mods/classification[@authority="local" and @type="alpha"]&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Alpha Local Call Number</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Classification (DDC)</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;classification authority="local" type="alpha"&gt;%value%&lt;/classification&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:classification[@authority="local" and @type="alpha"]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="subjects">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>Subject(s) of the content. Type a few characters of your target subject title
+            and choose from the autocomplete list. If a suitable match is not available, consider
+            entering a subject title copied from &lt;a
+            href="http://id.loc.gov/authorities/subjects.html" target="_blank"&gt;http://id.loc.gov/authorities/subjects.html&lt;/a&gt;
+            whenever possible. </description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Subjects</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="lcsh">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Subject of the content per &lt;a href="http://id.loc.gov/authorities/subjects.html" target="_blank"&gt; http://id.loc.gov/authorities/subjects.html&lt;/a&gt;.
+&lt;div class="adminNote"&gt;/mods:subject[@authority="lcsh"]/mods:topic --&gt; /dc.subject&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>General Topics using Library of Congress Subject Heading (LCSH) Topics</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/LCSH-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject authority="lcsh"&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@authority="lcsh"]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="geographic">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Place(s) related to the content per LCSH.
+&lt;div class="adminNote"&gt;/mods/subject[@authority="lcsh"]/geographic --&gt; /dc/subject&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>LCSH Place</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/Place-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject authority="lcsh"&gt;&lt;geographic&gt;%value%&lt;/geographic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@authority='lcsh']/mods:geographic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="chronological">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Time period(s) related to the content per LCSH.
+&lt;div class="adminNote"&gt;/mods/subject[@authority="lcsh"]/temporal[not(@point)] --&gt; /dc/subject&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>LCSH Chronological</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/Event-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject authority="lcsh"&gt;&lt;temporal&gt;%value%&lt;/temporal&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@authority="lcsh"]/mods:temporal[not(@point)]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="topic">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Topics (keywords) which are explicitly NOT from the LCSH vocabulary.  &lt;div class="adminNote"&gt;/mods/subject[not(@authority)]/topic --&gt; /dc/subject&lt;/div&gt;</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>General NON-LCSH Topics (Keywords)</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/Subject-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[not(@authority) and not(@usage)]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="Subject Genre">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use for genre of content such as the plot or theme (landscape; true crime stories; poetry ; menu; etc.) only if considered significant. Type a few characters of your target genre and choose from the autocomplete list. If no suitable match, consider entering a heading from an authoritative list such as  http://www.loc.gov/catdir/cpso/genre_form_general_terms_hierarchies.pdf&lt;div class="adminNote"&gt;/mods/subject[@usage="genre"]/topic&lt;/div&gt;
+ </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Subject Genre</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/Subject-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject usage="genre"&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@usage="genre"]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="Subject Format">
+            <properties>
+              <type>tags</type>
+              <access>FALSE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use for format of an object such as the materials or format (comic book ; acrylic ; poster ; website ; blog,; postcard; etc.) only if considered significant. Type a few characters of your target genre and choose from the autocomplete list. If no suitable match, consider entering a heading from an authoritative list such as  http://www.loc.gov/catdir/cpso/genre_form_general_terms_hierarchies.pdf</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Subject Format</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject usage="format"&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@usage="format"]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="Subject Special">
+            <properties>
+              <type>tags</type>
+              <access>FALSE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use for subject headings from non-LCSH thesauri such as AAT for Art &amp; Architecture http://www.getty.edu/research/tools/vocabularies/aat/
+ </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Subject Special</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject usage="special"&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@usage="special"]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="Subject Occupation">
+            <properties>
+              <type>tags</type>
+              <access>FALSE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Use for subject headings for the occupation of named persons who are the subject of the content, i.e., Drake, George A. could have the Occupation of &#x2018;College Presidents&#x2019;. Type a few characters of your target occupation and choose from the autocomplete list. If no suitable match, consider entering a heading from an authoritative list such as  http://authorities.loc.gov/cgi-bin/Pwebrecon.cgi?DB=local&amp;PAGE=First Subject Authority Headings.
+ </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Subject Occupation</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject usage="occupation"&gt;&lt;topic&gt;%value%&lt;/topic&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@usage="occupation"]/mods:topic</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+          <element name="taxonomicClassification">
+            <properties>
+              <type>tabs</type>
+              <access>FALSE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Select a taxonomic rank and enter the resource's corresponding botanical classification. </description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Taxonomic Classification</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;subject usage="taxonomic" /&gt;</value>
+                </create>
+                <read>
+                  <path>/mods:mods/mods:subject[@usage="taxonomic"]</path>
+                  <context>document</context>
+                </read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Refer to &lt;a href="http://en.wikipedia.org/wiki/Biological_classification"&gt;Wikipedia&lt;/a&gt; or other resources for explanations/discussions of various taxonomic schemes. &lt;p/&gt;Contact &lt;a href="mailto:digital@grinnell.edu"&gt;digital@grinnell.edu&lt;/a&gt; to request changes or additions to the taxonomy presented in this form.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods/mods:subject[@usage="taxonomic"]</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>topic</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:subject[@usage="taxonomic"]/mods:topic[@type]</path>
+                      <context>document</context>
+                    </read>
+                    <update>NULL</update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children>
+                  <element name="rank">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Select the taxonomic type (rank) of the corresponding classification (below).</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <class>Class</class>
+                        <subclass>Subclass</subclass>
+                        <superorder>Superorder</superorder>
+                        <order>Order</order>
+                        <family>Family</family>
+                        <subfamily>Subfamily</subfamily>
+                        <tribe>Tribe</tribe>
+                        <subtribe>Subtribe</subtribe>
+                        <genus>Genus</genus>
+                        <species>Species</species>
+                        <variety>Variety</variety>
+                        <cultivar>Cultivar</cultivar>
+                        <index key="common name">Common Name</index>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Rank</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>attribute</type>
+                          <prefix>NULL</prefix>
+                          <value>type</value>
+                        </create>
+                        <read>
+                          <path>@type</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                  <element name="classification">
+                    <properties>
+                      <type>textfield</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Enter the name (value) of the specified type/rank.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Classification</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>NULL</create>
+                        <read>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                        </update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="relationTab">
+        <properties>
+          <type>tabs</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Relation(s)</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>NULL</create>
+            <read>
+              <path>/mods:mods</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tabpanel</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <user_data>
+                <islandora_authority_t_pattern>!title [!pid]</islandora_authority_t_pattern>
+                <islandora_authority_fq>PID:grinnell\:*</islandora_authority_fq>
+              </user_data>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>relatedItem</value>
+                </create>
+                <read>
+                  <path>mods:relatedItem[not(@type='admin') and not(@displayLabel='Transcribe This Item')]</path>
+                  <context>parent</context>
+                </read>
+                <update>NULL</update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children>
+              <element name="type">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <default_value>isPartOf</default_value>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key="">None Specified</index>
+                    <isPartOf>is Part Of</isPartOf>
+                    <otherVersion>has Version</otherVersion>
+                    <isReplacedBy>is Replaced By</isReplacedBy>
+                    <replaces>Replaces</replaces>
+                    <isReferencedBy>is Referenced By</isReferencedBy>
+                    <requires>Requires</requires>
+                    <isBasedOn>is Based On</isBasedOn>
+                    <hasPart>has Part</hasPart>
+                    <isPartOfSeries>is Part Of Series</isPartOfSeries>
+                    <isFormOf>is Form Of</isFormOf>
+                    <constituent>has Constituent</constituent>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Relationship Type</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>type</value>
+                    </create>
+                    <read>
+                      <path>@type</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="target">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <autocomplete_path>islandora/entities/autocomplete/Entity-dc.title</autocomplete_path>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <default_value>Digital Grinnell</default_value>
+                  <description>Select one related collection from the available list and open additional tabs to accomodate specifying more than one collection relationship.
+
+To suggest additions to this list contact the &lt;a href="mailto:digital@grinnell.edu?subject=MODS relationTab Selections"&gt;System Admin&lt;/a&gt; for assistance.&lt;div class='adminNote'&gt;
+                    /mods/relatedItem/titleInfo/title --&gt; /dc/relatedItem&lt;/div&gt; </description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=" "> </index>
+                    <Abolition>Abolition</Abolition>
+                    <index key="Campus Buildings">Campus Buildings</index>
+                    <index key="Campus Events">Campus Events</index>
+                    <index key="Curricular Materials">Curricular Materials</index>
+                    <index key="Davis Projects for Peace">Davis Projects for Peace</index>
+                    <index key="Digital Grinnell">Digital Grinnell (On ALL Objects)</index>
+                    <index key="Drake Community Library (Grinnell, Iowa) Archives">Drake Community Library (Grinnell, Iowa) Archives</index>
+                    <index key="Early College History">Early College History</index>
+                    <index key="Faculty Scholarship">Faculty Scholarship</index>
+                    <index key="Frederick Baumann Essay Prize">Frederick Baumann Essay                      Prize</index>
+                    <index key="Grinnell College. Special Collections and Archives">Grinnell College. Special Collections and Archives</index>
+                    <index key="Grinnell College. Tutorial">Grinnell College. Tutorial</index>
+                    <index key="Grinnell College. Voicebox">Grinnell College. Voicebox</index>
+                    <index key="Grinnell Prize">Grinnell Prize</index>
+                    <index key="Humanities Student Symposium">Humanities Student Symposium</index>
+                    <index key="Iowa Historical Postcard Collection (IHPC)">Iowa Historical Postcard Collection</index>
+                    <index key="John Kleinschmidt Collection">John Kleinschmidt                      Collection</index>
+                    <index key="Liberal Arts Scholarly Repository">Liberal Arts Scholarly                      Repository</index>
+                    <index key="Library Exhibitions">Library Exhibitions</index>
+                    <index key="Life at Grinnell College">Life at Grinnell College</index>
+                    <index key="Mentored Advanced Project">Mentored Advanced                      Project</index>
+                    <index key="Parker Natural History Museum">Parker Natural History Museum</index>
+                    <index key="Peace Studies Student Conference">Peace Studies Student                      Conference</index>
+                    <index key="Poweshiek History Preservation Project">Poweshiek History                      Preservation Project</index>
+                    <Prairie>Prairie</Prairie>
+                    <index key="Scholarship at Grinnell">Scholarship at Grinnell</index>
+                    <index key="Social Justice at Grinnell">Social Justice at Grinnell</index>
+                    <index key="Student Scholarship">Student Scholarship</index>
+                    <index key="Studio Student Art">Studio Student Art</index>
+                    <index key="Undergraduate Student Symposium">Undergraduate Student Symposium</index>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Collection Name or Title</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;</value>
+                    </create>
+                    <read>
+                      <path>mods:titleInfo/mods:title</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="copyrightInfo">
+        <properties>
+          <type>textarea</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <default_value>Copyright to this work is held by the author(s), in accordance with United            States copyright law (USC 17). Readers of this work have certain rights as defined by            the law, including but not limited to fair use (17 USC 107 et seq.).</default_value>
+          <description>&lt;div class="adminNote"&gt;/mods/accessCondition[@type="useAndReproduction"] --&gt; /dc/rights&lt;/div&gt;</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Copyright Information</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;accessCondition
+                type="useAndReproduction"&gt;%value%&lt;/accessCondition&gt;</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:accessCondition[@type="useAndReproduction"]</path>
+              <context>document</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="extension">
+        <properties>
+          <type>markup</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <description>This is a required extension for Digital Grinnell.  No edits are necessary.</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Digital Grinnell Extension</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;extension&gt;
+  &lt;primarySort&gt;99&lt;/primarySort&gt;
+&lt;/extension&gt;</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:extension</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+    </children>
+  </form>
+</definition>
