@@ -314,3 +314,23 @@ ports:
 ```
 
 These changes did NOT help.  So I tried opening them to *Traefik*, and again, no help.  8^(  Going to need help from ITS, or someone, on this issue.
+
+**Important!**  Julia did some research into this issue just before winter break and determined that the LDAP problem is in PHP 5.6.  We need to run ISLE in PHP 7!
+
+## Exporting the DB
+
+With the exception of LDAP, things are working pretty well, so now I need to export my database so that I can use it elsewhere.  Before doing this I need to remove the `ihc`, `idu` and `icu` modules...they are a mess and keep getting in the way!  So I disabled each of these and will now `Uninstall` the following:
+
+  - Fedora Health Check (FHC)
+  - Fedora Import Control (FIC)
+  - Fedora Object Control (FOC)
+  - ICG Tuque Fedora Access
+  - Islandora Drush Utility (IDU)
+  - Islandora Health Check (IHC)
+  - Islandora Sync Field Collection
+  - Islandora Sync Relation
+  - Islandora XQuery
+  - Memcache
+  - Memcache Admin
+  - Taxonomy Access Control Lite Create
+  - Taxonomy Permissions
